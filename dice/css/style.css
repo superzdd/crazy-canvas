@@ -1,0 +1,40 @@
+body {
+	pointer-events: auto;
+	touch-action: none;
+	background-color: #3c3c3c;
+}
+
+.dice-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.dice {
+	width: 100px;
+	height: 100px;
+	background-color: #ffffff;
+}
+
+.one-dice{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.two-dice{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+
+
+.dot {
+	width: 20px;
+	height: 20px;
+	background-color: #000000;
+	border-radius: 50%;
+}
