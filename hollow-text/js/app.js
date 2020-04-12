@@ -91,10 +91,6 @@ let appView = {
 		$(window).click(function(e) {
 			appView.createNewBall(e);
 		});
-		
-		$(window).touch(function(e) {
-			appView.createNewBall(e);
-		});
 	},
 	createNewBall: function(e) {
 		let x = e.clientX;
