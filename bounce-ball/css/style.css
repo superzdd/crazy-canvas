@@ -1,0 +1,16 @@
+body {
+	--ball-dia: 100px;
+}
+
+.ball {
+	width: var(--ball-dia);
+	height: var(--ball-dia);
+	border-radius: 50%;
+	position: absolute;
+	background-color: red;
+}
+
+.ball--first {
+	left: calc(50vw - var(--ball-dia) * 0.5);
+	top: calc(50vh - var(--ball-dia) * 0.5);
+}
