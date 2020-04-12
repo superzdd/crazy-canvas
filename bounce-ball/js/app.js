@@ -98,7 +98,7 @@ let appView = {
 		let s_x = 20 - Math.random() * 40;
 		let s_y = 20 - Math.random() * 40;
 		let id = `b${Date.now()}`;
-		let dom = `<div class="ball" id="${id}" style="left:${x-50}px;top:${y-50}px"></div>`;
+		let dom = `<div class="ball" id="${id}" style="left:${x-50}px;top:${y-50}px;background-color:rgb(${appView.random255()},${appView.random255()},${appView.random255()})"></div>`;
 		$('body').append(dom);
 
 		let b = new ball(x, y, 50, s_x, s_y, $('#' + id), rem);
@@ -130,6 +130,9 @@ let appView = {
 		for (let i = 0; i < appView.ballList.length; i++) {
 			appView.ballList[i].updateWinSize(rem);
 		}
+	},
+	random255: function() {
+		return Math.floor(Math.random() * 256);
 	}
 }
 
