@@ -88,11 +88,7 @@ let appView = {
 			appView.updateBalls();
 		});
 
-		$(window).click(function(e) {
-			appView.createNewBall(e);
-		});
-		
-		$(window).touch(function(e) {
+		$(document).click(function(e) {
 			appView.createNewBall(e);
 		});
 	},
