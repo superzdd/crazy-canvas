@@ -31,8 +31,6 @@ svg {
 }
 
 .mask-text {
-	font-size: 100;
-	font-weight: 900;
 	text-anchor: middle;
 	fill: black;
 }
