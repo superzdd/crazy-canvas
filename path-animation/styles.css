@@ -1,61 +1,71 @@
-html{
-  font-size: 100px;
-  font-family: "Microsolf YaHei",sans-serif;
-  background: #071a52;
-  text-align: center;
+html {
+	font-size: 100px;
+	font-family: "Microsolf YaHei", sans-serif;
+	background: #071a52;
+	text-align: center;
 }
 
 
- .path-group{
-  fill:none;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-dasharray:1243;
-  stroke-dashoffset:1243;
+.path-group {
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-dasharray: 1243;
+	stroke-dashoffset: 1243;
 
-  animation-duration: 3s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-fill-mode: both;
-  animation-direction: alternate;
+	animation-duration: 3s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+	animation-direction: alternate;
 }
-.path-group-1{
-  stroke:#086972;
-  stroke-width:5px;
-  animation-name: strokeText1;
+
+.path-group-1 {
+	stroke: #086972;
+	stroke-width: 5px;
+	animation-name: strokeText1;
 }
-.path-group-2{
-  stroke:#17b978;
-  stroke-width:15px;
-  animation-name: strokeText2;
+
+.path-group-2 {
+	stroke: #17b978;
+	stroke-width: 15px;
+	animation-name: strokeText2;
 }
-.path-group-3{
-  stroke:#a7ff83;
-  stroke-width:25px;
-  animation-name: strokeText3;
+
+.path-group-3 {
+	stroke: #a7ff83;
+	stroke-width: 25px;
+	animation-name: strokeText3;
 }
 
 @keyframes strokeText1 {
-  10%{
-    stroke-dashoffset:1243;
-  }
-  40%,to{
-    stroke-dashoffset:0;
-  }
+	10% {
+		stroke-dashoffset: 1243;
+	}
+
+	40%,
+	to {
+		stroke-dashoffset: 0;
+	}
 }
+
 @keyframes strokeText2 {
-  20%{
-    stroke-dashoffset:1243;
-  }
-  70%,to{
-    stroke-dashoffset:0;
-  }
+	20% {
+		stroke-dashoffset: 1243;
+	}
+
+	70%,
+	to {
+		stroke-dashoffset: 0;
+	}
 }
+
 @keyframes strokeText3 {
-  30%{
-    stroke-dashoffset:1243;
-  }
-  to{
-    stroke-dashoffset:0;
-  }
+	30% {
+		stroke-dashoffset: 1243;
+	}
+
+	to {
+		stroke-dashoffset: 0;
+	}
 }
