@@ -1,0 +1,83 @@
+body {
+	--width: 100px;
+	--shadow-str: '';
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #000000;
+
+}
+
+.rect-container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	min-width: 900px;
+	width: 70vw;
+}
+
+.rect-container:hover .rect {
+	background: linear-gradient(135deg, #55acee 0%, #2274b2 100%);
+}
+
+.rect {
+	width: var(--width);
+	height: var(--width);
+	border-radius: 5px;
+	background: linear-gradient(135deg, #55acee 0%, #55acee 100%);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 40px;
+	color: #FFFFFF;
+
+	overflow: hidden;
+}
+
+.rect>span {
+	text-shadow: var(--shadow-str);
+}
+
+.light-container {
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	-webkit-perspective: 0.1rem;
+	perspective: 0.1rem;
+	-webkit-transform-origin: center;
+	transform-origin: center;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.light--top-left{
+	-webkit-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+	transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+}
+
+.light--top-right{
+	-webkit-transform: translate3d(50%, -50%, 0) rotate(45deg);
+	transform: translate3d(50%, -50%, 0) rotate(45deg);
+}
+
+.light--bottom-left{
+	-webkit-transform: translate3d(-50%, 50%, 0) rotate(-135deg);
+	transform: translate3d(-50%, 50%, 0) rotate(-135deg);
+}
+
+.light--bottom-right{
+	-webkit-transform: translate3d(50%, 50%, 0) rotate(135deg);
+	transform: translate3d(50%, 50%, 0) rotate(135deg);
+}
+
+.light-container div {
+	width: 0.4rem;
+	height: 1rem;
+	transform: rotateX(12deg);
+	background: linear-gradient(#ffffff 0% 70%, transparent);
+}
