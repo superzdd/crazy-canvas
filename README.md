@@ -8,3 +8,4 @@ web前端特效，主要是对kong66的躁动web的一些项目，自己重写�
 9. [SVG文字路径动画](https://superzdd.github.io/crazy-canvas/path-animation/index.html)
 9. [SVG文字路径动画-svg-text](https://superzdd.github.io/crazy-canvas/path-animation/index-svg-text.html)
 28. [长阴影](https://superzdd.github.io/crazy-canvas/long-shadow/index.html)
+41. [初识canvas](https://superzdd.github.io/crazy-canvas/canvas-mask/index.html) 

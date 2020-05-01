@@ -1,0 +1,39 @@
+body {
+	--ball-dia: 100px;
+}
+
+.mode {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+
+	mix-blend-mode: multiply;
+}
+
+.mask {
+	background-color: black;
+	color: white;
+	font-size: 15vw;
+	font-weight: 900;
+	text-align: center;
+	line-height: 100vh;
+	z-index: 15;
+	-moz-user-select: none;
+	/*火狐*/
+	-webkit-user-select: none;
+	/*webkit浏览器*/
+	-ms-user-select: none;
+	/*IE10*/
+	-khtml-user-select: none;
+	/*早期浏览器*/
+	user-select: none;
+}
+
+#app {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 5;
+}
