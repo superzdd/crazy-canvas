@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+    />
+    <title>svg filter feImage</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 1200 600"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <defs>
+          <filter id="image">
+            <feImage xlink:href="./imgs/mj.jpg" />
+          </filter>
+        </defs>
+
+        <rect
+          x="10%"
+          y="10%"
+          width="80%"
+          height="80%"
+          style="filter: url(#image);"
+        />
+      </svg>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+  </body>
+</html>

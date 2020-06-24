@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+    />
+    <title>svg filter级联和feMerge的区别</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/common.css" /> -->
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <h1 class="">svg filter级联和feMerge的区别</h1>
+      <h2>总结</h2>
+      <h3>写不写级联区别不大，或者说简单写写没有区别</h3>
+      <h3>
+        feMerge和级联的区别是，feMerge可以将多个滤镜效果分开作用在目标上，而级联（或不级联）只能将滤镜效果叠加在一起作用在目标上
+      </h3>
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 1200 600"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <defs>
+          <filter id="blurMe" primitiveUnits="userSpaceOnUse">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="5"
+              in="A"
+              result="B"
+            />
+            <feOffset dx="-50" dy="-50" result="A" />
+          </filter>
+
+          <filter id="blurMe2" primitiveUnits="userSpaceOnUse">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="A" />
+            <feOffset dx="-50" dy="-50" in="A" result="B" />
+            <feMerge>
+              <feMergeNode in="A" />
+              <feMergeNode in="B" />
+            </feMerge>
+          </filter>
+
+          <filter id="blurMe3" primitiveUnits="userSpaceOnUse">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+            <feOffset dx="-50" dy="-50" />
+          </filter>
+        </defs>
+
+        <text x="0" y="20">
+          级联filter：高斯模糊+偏移，结果两个效果叠加到了一起
+        </text>
+        <rect
+          x="20"
+          y="40"
+          width="100"
+          height="100"
+          fill="#ADFF2F"
+          filter="url(#blurMe)"
+        />
+
+        <text x="0" y="200">
+          feMerge filter：高斯模糊+偏移，结果两个效果分别作用
+        </text>
+        <rect
+          x="20"
+          y="220"
+          width="100"
+          height="100"
+          fill="#ADFF2F"
+          filter="url(#blurMe2)"
+        />
+
+        <text x="0" y="400">
+          不级联，不merge：高斯模糊+偏移，结果两个效果叠加到了一起，和级联的效果一致
+        </text>
+        <rect
+          x="20"
+          y="420"
+          width="100"
+          height="100"
+          fill="#ADFF2F"
+          filter="url(#blurMe3)"
+        />
+      </svg>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+  </body>
+</html>

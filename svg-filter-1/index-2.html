@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+        />
+        <title>svg filter级联</title>
+        <link rel="stylesheet" type="text/css" href="css/common.css" />
+    </head>
+
+    <body>
+        <div class="page">
+            <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 1200 600"
+                preserveAspectRatio="xMidYMid meet"
+            >
+                <defs>
+                    <filter id="blurMe" primitiveUnits="userSpaceOnUse">
+                        <feGaussianBlur
+                            in="SourceGraphic"
+                            stdDeviation="5"
+                            result="A"
+                        />
+                        <feImage in="A" xlink:href="./imgs/mj.jpg" result="B" />
+                        <feGaussianBlur in="B" stdDeviation="5" result="C" />
+                        <feOffset dx="-10" dy="-10" in="C" result="D" />
+                    </filter>
+
+                    <filter id="blurMe2" primitiveUnits="userSpaceOnUse">
+                        <feGaussianBlur
+                            in="SourceGraphic"
+                            stdDeviation="5"
+                            result="A"
+                        />
+                        <feImage in="A" xlink:href="./imgs/mj.jpg" result="B" />
+                        <feGaussianBlur in="B" stdDeviation="5" result="C" />
+                        <feOffset dx="-10" dy="-10" in="C" result="D" />
+                        <feFlood
+                            flood-color="red"
+                            flood-opacity="0.2"
+                            in="D"
+                            result="E"
+                        />
+                    </filter>
+                </defs>
+
+                <circle
+                    cx="170"
+                    cy="60"
+                    r="50"
+                    fill="green"
+                    filter="url(#blurMe)"
+                />
+
+                <circle
+                    cx="300"
+                    cy="60"
+                    r="50"
+                    fill="green"
+                    filter="url(#blurMe2)"
+                />
+            </svg>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+    </body>
+</html>

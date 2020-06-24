@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+        />
+        <title>feTile</title>
+        <!-- <link rel="stylesheet" type="text/css" href="css/common.css" /> -->
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="page">
+            <h1 class="">svg filter feTile</h1>
+            <svg
+                width="500px"
+                height="500px"
+                viewBox="0 0 1000 1000"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+                <defs>
+                    <filter id="filter-tile" primitiveUnits="objectBoundingBox">
+                        <feImage
+                            xlink:href="./imgs/mj-mini.jpg"
+                            x="0"
+                            y="0"
+                            width="0.2"
+                            height="0.1"
+                            result="i"
+                        />
+
+                        <feTile in="i" x="0" y="0" width="1" height="1" />
+                    </filter>
+                    <!-- <filter id="filter-tile">
+                        <feImage
+                            xlink:href="./imgs/mj-mini.jpg"
+                            x="0"
+                            y="0"
+                            width="100"
+                            height="100"
+                            result="i"
+                        />
+
+                        <feTile in="i" x="0" y="0" width="500" height="1000" />
+                    </filter> -->
+                </defs>
+
+                <image
+                    xlink:href="./imgs/mj-mini.jpg"
+                    x="0"
+                    y="10"
+                    width="100"
+                />
+
+                <rect
+                    x="500"
+                    y="0"
+                    width="500"
+                    height="1000"
+                    filter="url(#filter-tile)"
+                />
+            </svg>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+    </body>
+</html>

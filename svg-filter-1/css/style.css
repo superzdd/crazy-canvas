@@ -1,0 +1,37 @@
+body {
+	--ball-dia: 100px;
+}
+
+.ball {
+	width: var(--ball-dia);
+	height: var(--ball-dia);
+	border-radius: 50%;
+	position: absolute;
+	background-color: red;
+	animation: big ease 0.1s;
+}
+
+.ball--first {
+	left: calc(50vw - var(--ball-dia) * 0.5);
+	top: calc(50vh - var(--ball-dia) * 0.5);
+}
+
+@keyframes big {
+	from {
+		transform: scale(0.5);
+	}
+
+	to {
+		transform: scale(1);
+	}
+}
+
+@-webkit-keyframes name {
+	from {
+		-webkit-transform: scale(0.5);
+	}
+
+	to {
+		-webkit-transform: scale(1);
+	}
+}
