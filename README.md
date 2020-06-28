@@ -13,4 +13,4 @@ web 前端特效，主要是对 kong66 的躁动 web 的一些项目，自己重
 9. [长阴影](https://superzdd.github.io/crazy-canvas/long-shadow/index.html)
 10. [初识 canvas](https://superzdd.github.io/crazy-canvas/canvas-mask/index.html)
 11. [canvas 绘画基础-1](https://superzdd.github.io/crazy-canvas/canvas-loading/index.html)
-12. [让图中的水面动起来](https://superzdd.github.io/crazy-canvas/water-flow/water-flow.html)
+12. [让图中的水面动起来](https://superzdd.github.io/crazy-canvas/water-flow/index.html)
