@@ -19,16 +19,17 @@ span {
 
 html,
 body {
+  width: 100%;
   height: 100%;
   overflow: hidden;
   background: #fff;
   position: relative;
 }
 
-ul,
+/* ul,
 li {
-  list-style: none;
-}
+    list-style: none;
+} */
 
 a {
   text-decoration: none;

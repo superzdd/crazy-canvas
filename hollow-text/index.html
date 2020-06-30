@@ -1,29 +1,151 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
-		<title>镂空文本</title>
-		<link rel="stylesheet" type="text/css" href="css/common.css">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
-	<body>
-		<div id="page">
-			<video src="./assets/bgmovie.mp4" autoplay muted loop preload></video>
-			<svg viewbox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-				<defs>
-					<mask id="mask" x="0" y="0" width="100%" height="100%">
-						<rect class="mask-rect" x="0" y="0" width="100%" height="100%"></rect>
-						<text class="mask-text" x="50%" y="45%" font-size="300" font-weight="900">SUPERZDD</text>
-					</mask>
-				</defs>
-				<rect class="svg-rect" x="0" y="0" width="100%" height="100%"></rect>
-			</svg>
-		</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+    />
+    <title>镂空文本</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/github-markdown.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
 
+  <body>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="wrapper">
+            <video src="./assets/bgmovie.mp4" autoplay muted loop preload></video>
+            <svg viewbox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="Gradient1">
+                  <stop class="stop1" offset="0%" />
+                  <stop class="stop2" offset="50%" />
+                  <stop class="stop3" offset="100%" />
+                </linearGradient>
+                <mask id="mask" x="0" y="0" width="100%" height="100%">
+                  <rect class="mask-rect" x="0" y="0" width="100%" height="100%"></rect>
+                  <text class="mask-text" x="50%" y="50%" font-size="300" font-weight="900">
+                    SUPERZDD
+                  </text>
+                </mask>
+              </defs>
+              <rect class="svg-rect" x="0" y="0" width="100%" height="100%"></rect>
+            </svg>
+          </div>
+          <div class="content markdown-body" id="sm1"></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="wrapper">
+            <div id="bg">
+              <video src="./assets/bgmovie.mp4" autoplay muted loop preload></video>
+            </div>
 
-		<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
-		<script src="js/rem.js"></script>
-		<script src="js/app.js"></script>
-	</body>
+            <!-- css background-clip 遮罩-->
+            <p id="mask">superzdd</p>
+          </div>
+          <div class="content markdown-body" id="sm2"></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="wrapper">
+            <svg width="900" height="300" viewbox="0 0 600 500">
+              <defs>
+                <clipPath id="zdd">
+                  <path
+                    d="M111.296875,29.8632813 C78.9869792,-9.47265625 46.1015625,-9.47265625 12.640625,29.8632813 C-37.5507813,88.8671875 102.464844,95.2382813 111.296875,146.402344 C120.128906,197.566406 83.1484375,200.332031 64.5195312,200.332031 C52.1002604,200.332031 37.5625,188.376302 20.90625,164.464844"
+                    id="路径"
+                  ></path>
+                  <path
+                    d="M143,110.910044 C170.703125,104.227752 184.554688,94.2498876 184.554688,80.9764501 C184.554688,67.7030126 182.057292,98.8241064 177.0625,174.339731 C180.348958,190.701711 188.001302,198.8827 200.019531,198.8827 C212.03776,198.8827 219.395833,190.701711 222.09375,174.339731 L230.273438,125.011719 L222.09375,184.375 C221.554688,190.590996 224.28125,195.426896 230.273438,198.8827 C236.265625,202.338504 240.734375,199.954427 243.679688,191.730469 L243.679688,184.375"
+                    id="路径-2"
+                  ></path>
+                  <path
+                    d="M446.745089,150.730932 C487.630961,158.965368 511.964136,143.953123 519.744614,105.694195 C527.525092,67.4352682 506.948598,67.4352682 458.015131,105.694195 C440.661623,142.549468 440.661623,170.988382 458.015131,191.01094 C475.368639,211.033498 502.696929,197.606828 540,150.730932"
+                    id="路径-4"
+                  ></path>
+                  <path
+                    d="M561,109.661257 C561.147363,87.8870858 570.332638,77 588.555824,77 C606.779011,77 608.719127,96.0281419 594.376173,134.084426 L572.358648,200 L610.777859,93.4668212 C613.471935,82.4889404 621.545982,77 635,77"
+                    id="路径-5"
+                  ></path>
+                  <polyline
+                    id="路径-6"
+                    points="670.121094 78 742.800781 78 656.710938 200 742.800781 200.416453"
+                  ></polyline>
+                  <path
+                    d="M812.195724,162.444247 C811.389298,152.309313 807.603857,145.459834 800.839399,141.895808 C790.692713,136.54977 765.346658,166.120627 788.397405,195.596125 C803.76457,215.246456 815.074563,175.88222 822.327384,77.5034154 L812.195724,181.428848 C814.579939,190.873699 817.957159,195.596125 822.327384,195.596125 C828.882722,195.596125 833,191.328124 833,181.428848"
+                    id="路径-7"
+                  ></path>
+                  <path
+                    d="M888.195724,162.940831 C887.389298,152.805898 883.603857,145.956418 876.839399,142.392393 C866.692713,137.046355 841.346658,166.617212 864.397405,196.092709 C879.76457,215.743041 891.074563,176.378804 898.327384,78 L888.195724,181.925433 C890.579939,191.370284 893.957159,196.092709 898.327384,196.092709 C904.882722,196.092709 909,191.824708 909,181.925433"
+                    id="路径-7"
+                  ></path>
+                  <path
+                    d="M270.953476,129.514626 C303.77776,110.654597 320.189902,90.6108651 320.189902,69.3834295 C320.189902,48.155994 303.77776,168.721304 270.953476,431.079359 C263.114414,452.777479 254.277578,463.62654 244.44297,463.62654 C229.691057,463.62654 201.87404,471.120221 168.199195,451.09979 C134.52435,431.079359 132.236423,412.9673 145.651157,382.447327 C159.06589,351.927354 300.776262,108.050683 320.189902,94.9524698 C339.603542,81.8542567 399.977035,94.9524698 399.977035,94.9524698 C399.977035,94.9524698 411.881806,102.225809 411.881806,102.225809 C411.881806,102.225809 436.897742,121.174001 411.881806,142.201601 C395.204515,156.22 361.580449,166.620516 311.009609,173.40315"
+                    id="路径-3"
+                  ></path>
+                </clipPath>
+              </defs>
+              <use class="path-group" xlink:href="#sign" x="0" y="0" />
+            </svg>
+
+            <video
+              id="clipped"
+              style="clip-path: url(#zdd);"
+              src="./assets/bgmovie.mp4"
+              autoplay
+              muted
+              loop
+              preload
+            ></video>
+          </div>
+          <div class="content markdown-body" id="sm3"></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="wrapper wrapper--hor">
+            <div class="render-container">
+              <video id="blend-video" src="./assets/bgmovie.mp4" autoplay muted loop preload></video>
+              <!-- <img id="blend-video" src="./assets/bgtest.png" alt="" /> -->
+              <div id="blend-cover"></div>
+              <p id="blend-text">superzdd</p>
+            </div>
+            <div class="select-container">
+              <select id="sel-blend">
+                <option value="normal">normal</option>
+                <option value="multiply">multiply</option>
+                <option value="screen" selected>screen</option>
+                <option value="overlay">overlay</option>
+                <option value="darken">darken</option>
+                <option value="lighten">lighten</option>
+                <option value="color-dodge">color-dodge</option>
+                <option value="color-burn">color-burn</option>
+                <option value="hard-light">hard-light</option>
+                <option value="soft-light">soft-light</option>
+                <option value="difference">difference</option>
+                <option value="exclusion">exclusion</option>
+                <option value="hue">hue</option>
+                <option value="saturation">saturation</option>
+                <option value="color">color</option>
+                <option value="luminosity">luminosity</option>
+                <option value="initial">initial</option>
+                <option value="inherit">inherit</option>
+                <option value="unset">unset</option>
+              </select>
+            </div>
+          </div>
+          <div class="content markdown-body" id="sm4"></div>
+        </div>
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script src="js/marked.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>
