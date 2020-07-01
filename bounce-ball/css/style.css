@@ -1,37 +1,51 @@
 body {
-	--ball-dia: 100px;
+  --ball-dia: 100px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  font-size: 1rem;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .ball {
-	width: var(--ball-dia);
-	height: var(--ball-dia);
-	border-radius: 50%;
-	position: absolute;
-	background-color: red;
-	animation: big ease 0.1s;
+  width: var(--ball-dia);
+  height: var(--ball-dia);
+  border-radius: 50%;
+  position: absolute;
+  background-color: red;
+  animation: big ease 0.1s;
+  mix-blend-mode: multiply;
 }
 
 .ball--first {
-	left: calc(50vw - var(--ball-dia) * 0.5);
-	top: calc(50vh - var(--ball-dia) * 0.5);
+  left: calc(50vw - var(--ball-dia) * 0.5);
+  top: calc(50vh - var(--ball-dia) * 0.5);
 }
 
 @keyframes big {
-	from {
-		transform: scale(0.5);
-	}
+  from {
+    transform: scale(0.5);
+  }
 
-	to {
-		transform: scale(1);
-	}
+  to {
+    transform: scale(1);
+  }
 }
 
 @-webkit-keyframes name {
-	from {
-		-webkit-transform: scale(0.5);
-	}
+  from {
+    -webkit-transform: scale(0.5);
+  }
 
-	to {
-		-webkit-transform: scale(1);
-	}
+  to {
+    -webkit-transform: scale(1);
+  }
 }
