@@ -12,3 +12,4 @@ web 前端特效，主要是对 kong66 的躁动 web 的一些项目，自己重
 8. [初识 canvas](https://superzdd.github.io/crazy-canvas/canvas-mask/index.html)
 9. [canvas 绘画基础-1](https://superzdd.github.io/crazy-canvas/canvas-loading/index.html)
 10. [让图中的水面动起来](https://superzdd.github.io/crazy-canvas/water-flow/index.html)
+11. [霓虹灯](https://superzdd.github.io/crazy-canvas/neon-text/index.html)
