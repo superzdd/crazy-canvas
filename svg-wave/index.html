@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+    />
+    <title>svg水波滤镜</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <svg
+      width="110%"
+      height="110%"
+      viewBox="0 0 1200 1000"
+      preserveAspectRatio="xMidYMid slice"
+      style="margin-left: -5%; margin-top: -5%;"
+    >
+      <defs>
+        <g id="ripples" width="1200" height="600" x="0" y="0">
+          <g class="ripple" id="wave">
+            <circle cx="0" cy="0" r="20" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.6)">
+              <animate
+                fill="freeze"
+                attributeName="stroke"
+                from="hsla(0,0%,0%,0.6)"
+                to="hsla(0,0%,0%,0)"
+                begin="indefinite"
+                dur="2.5s"
+                repeatCount="1"
+              />
+              <animate
+                fill="freeze"
+                attributeName="r"
+                from="20"
+                to="40"
+                begin="indefinite"
+                dur="2.5s"
+                repeatCount="1"
+              />
+            </circle>
+
+            <circle cx="0" cy="0" r="25" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.6)">
+              <animate
+                fill="freeze"
+                attributeName="r"
+                from="25"
+                to="70"
+                begin="indefinite"
+                dur="2.5s"
+                repeatCount="1"
+              />
+              <animate
+                fill="freeze"
+                attributeName="stroke"
+                from="hsla(0,0%,0%,0.6)"
+                to="hsla(0,0%,0%,0)"
+                begin="indefinite"
+                dur="2.5s"
+                repeatCount="1"
+              />
+            </circle>
+
+            <circle cx="0" cy="0" r="30" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.4)">
+              <animate
+                fill="freeze"
+                attributeName="r"
+                from="30"
+                to="100"
+                begin="indefinite"
+                dur="2.5s"
+                repeatCount="1"
+              />
+              <animate
+                fill="freeze"
+                attributeName="stroke"
+                from="hsla(0,0%,0%,0.4)"
+                to="hsla(0,0%,0%,0)"
+                begin="indefinite"
+                dur="2.5s"
+                repeatCount="1"
+              />
+            </circle>
+
+            <circle cx="0" cy="0" r="50" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.2)">
+              <animate
+                fill="freeze"
+                attributeName="r"
+                from="50"
+                to="130"
+                begin="indefinite"
+                dur="2.5s"
+                repeatCount="1"
+              />
+              <animate
+                fill="freeze"
+                attributeName="stroke"
+                from="hsla(0,0%,0%,0.2)"
+                to="hsla(0,0%,0%,0)"
+                begin="indefinite"
+                dur="2.5s"
+                repeatCount="1"
+              />
+            </circle>
+          </g>
+        </g>
+
+        <filter id="blurMe" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse">
+          <feImage
+            xlink:href="#ripples"
+            x="0"
+            y="0"
+            width="1200"
+            height="1000"
+            preserveAspectRatio="xMidYMid meet"
+            result="wave"
+          />
+          <feGaussianBlur in="wave" stdDeviation="5" result="blur" />
+          <feDiffuseLighting
+            id="light"
+            in="blur"
+            result="light"
+            lighting-color="#green"
+            surfaceScale="30"
+            diffuseConstant="0.5"
+          >
+            <!-- azimuth 代表光线的射入角度，从坐标轴原点射出光线，角度为和x轴正半轴的角度，0度为水平向右，然后顺时针旋转 -->
+            <feDistantLight azimuth="-90" elevation="60" />
+          </feDiffuseLighting>
+
+          <!-- <feDisplacementMap in2="gaussWave" in="SourceGraphic" scale="100" result="disGraph" xChannelSelector="R" yChannelSelector="G"/> -->
+          <!-- 添加背景 feDiffuseLighting 颜色换成浅色-->
+          <feImage
+            xlink:href="./water.jpg"
+            x="0"
+            y="0"
+            width="1920"
+            height="1080"
+            preserveAspectRatio="xMidYMid slice"
+            result="bg"
+          />
+          <feBlend in="light" in2="bg" mode="multiply" />
+        </filter>
+
+        <filter id="displacementFilter" x="0" y="0" width="10000000000%" height="100%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.022"
+            numOctaves="2"
+            in="light"
+            result="turbulence"
+          ></feTurbulence>
+
+          <feOffset in="fractalNoise" dx="0" dy="0" result="offsetFractalNoise">
+            <animate
+              attributeType="XML"
+              attributeName="dx"
+              values="0;-5000000000"
+              dur="200000000s"
+              repeatCount="indefinite"
+            />
+          </feOffset>
+
+          <feDisplacementMap
+            in2="offsetFractalNoise"
+            in="SourceGraphic"
+            scale="30"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="displacement"
+          />
+        </filter>
+
+        <feImage
+          xlink:href="./water.jpg"
+          x="0"
+          y="0"
+          width="1920"
+          height="1080"
+          preserveAspectRatio="xMidYMid slice"
+          result="bg"
+        />
+        <feBlend in="displacement" in2="bg" mode="multiply" />
+      </defs>
+
+      <!-- <use class="ripple" href="#wave" x="200" y="100" filter="url(#blurMe)" /> -->
+      <g x="0" y="0" width="1200" height="1000" filter="url(#displacementFilter)">
+        <rect x="0" y="0" width="1200" height="1000" fill="none" filter="url(#blurMe)" />
+        <text
+          x="900"
+          y="500"
+          font-family="Verdana"
+          height="50"
+          width="500"
+          font-size="35"
+          style="fill: red; text-align: center; overflow: visible; opacity: 0.2;"
+        >
+          &nbsp; Superzdd &nbsp;
+        </text>
+      </g>
+    </svg>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
