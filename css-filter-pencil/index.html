@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
+    />
+    <title>css铅笔</title>
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <h1>铅笔效果</h1>
+          <div class="img-container">
+            <img src="./gundam.jpg" alt="" />
+            <img src="./gundam.jpg" alt="" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <h1>粉笔效果</h1>
+          <div class="img-container-2">
+            <img src="./gundam.jpg" alt="" />
+            <img src="./gundam.jpg" alt="" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <h1>浮雕效果</h1>
+          <div class="img-container-3">
+            <img src="./gundam.jpg" alt="" />
+            <img src="./gundam.jpg" alt="" />
+            <img src="./gundam.jpg" alt="" />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <h1>水墨画效果</h1>
+          <div class="img-container-4">
+            <img src="./gundam.jpg" alt="" />
+            <img src="./gundam.jpg" alt="" />
+            <img src="./gundam.jpg" alt="" />
+            <img src="./gundam.jpg" alt="" />
+            <img src="./gundam.jpg" alt="" />
+            <img src="./gundam.jpg" alt="" />
+            <img src="./gundam.jpg" alt="" />
+          </div>
+          <div class="filters">
+            <label>
+              <input class="filter" type="range" filter="blur" unit="px" min="0" max="20" value="0" step="1" />
+              <span>blur(0)</span>
+            </label>
+            <label>
+              <input class="filter" type="range" filter="grayscale" unit="" min="0" max="1" value="1" step=".1" />
+              <span>grayscale(0)</span>
+            </label>
+            <label>
+              <input class="filter" type="range" filter="sepia" unit="" min="0" max="1" value="0" step=".1" />
+              <span>sepia(0)</span>
+            </label>
+            <label>
+              <input class="filter" type="range" filter="brightness" unit="" min="0" max="10" value="2" step=".1" />
+              <span>brightness(0)</span>
+            </label>
+            <label>
+              <input class="filter" type="range" filter="contrast" unit="" min="0" max="2" value="1" step=".1" />
+              <span>contrast(0)</span>
+            </label>
+            <label>
+              <input class="filter" type="range" filter="hue-rotate" unit="deg" min="0" max="360" value="0" step="1" />
+              <span>hue-rotate(0)</span>
+            </label>
+            <label>
+              <input class="filter" type="range" filter="invert" unit="" min="0" max="2" value="0" step=".1" />
+              <span>invert(0)</span>
+            </label>
+            <label>
+              <input class="filter" type="range" filter="saturate" unit="" min="0" max="5" value="1" step=".1" />
+              <span>saturate(0)</span>
+            </label>
+            <label>
+              <input class="filter" type="range" filter="opacity" unit="" min="0" max="1" value="1" step=".1" />
+              <span>opacity(0)</span>
+            </label>
+            <label>
+              <input class="filter" type="range" filter="drop-shadow" unit="px" min="0" max="50" value="0" step="1" />
+              <span>drop-shadow(0)</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

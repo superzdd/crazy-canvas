@@ -14,3 +14,4 @@ web 前端特效，主要是对 kong66 的躁动 web 的一些项目，自己重
 10. [让图中的水面动起来](https://superzdd.github.io/crazy-canvas/water-flow/index.html)
 11. [霓虹灯](https://superzdd.github.io/crazy-canvas/neon-text/index.html)
 12. [svg 水波背景](https://superzdd.github.io/crazy-canvas/svg-wave/index.html)
+13. [铅笔，粉笔，浮雕，水墨画](https://superzdd.github.io/crazy-canvas/css-filter-pencil/index.html)
