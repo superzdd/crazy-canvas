@@ -21,86 +21,54 @@
       <defs>
         <g id="ripples" width="1200" height="600" x="0" y="0">
           <g class="ripple" id="wave">
-            <circle cx="0" cy="0" r="20" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.6)">
+            <circle cx="0" cy="0" r="20" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.9)">
               <animate
                 fill="freeze"
                 attributeName="stroke"
-                from="hsla(0,0%,0%,0.6)"
+                from="hsla(0,0%,0%,0.9)"
                 to="hsla(0,0%,0%,0)"
                 begin="indefinite"
-                dur="2.5s"
+                dur="4s"
                 repeatCount="1"
               />
+              <animate fill="freeze" attributeName="r" from="20" to="40" begin="indefinite" dur="4s" repeatCount="1" />
+            </circle>
+
+            <circle cx="0" cy="0" r="25" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.9)">
+              <animate fill="freeze" attributeName="r" from="25" to="70" begin="indefinite" dur="4s" repeatCount="1" />
               <animate
                 fill="freeze"
-                attributeName="r"
-                from="20"
-                to="40"
+                attributeName="stroke"
+                from="hsla(0,0%,0%,0.9)"
+                to="hsla(0,0%,0%,0)"
                 begin="indefinite"
-                dur="2.5s"
+                dur="4s"
                 repeatCount="1"
               />
             </circle>
 
-            <circle cx="0" cy="0" r="25" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.6)">
-              <animate
-                fill="freeze"
-                attributeName="r"
-                from="25"
-                to="70"
-                begin="indefinite"
-                dur="2.5s"
-                repeatCount="1"
-              />
+            <circle cx="0" cy="0" r="30" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.7)">
+              <animate fill="freeze" attributeName="r" from="30" to="100" begin="indefinite" dur="4s" repeatCount="1" />
               <animate
                 fill="freeze"
                 attributeName="stroke"
-                from="hsla(0,0%,0%,0.6)"
+                from="hsla(0,0%,0%,0.7)"
                 to="hsla(0,0%,0%,0)"
                 begin="indefinite"
-                dur="2.5s"
+                dur="4s"
                 repeatCount="1"
               />
             </circle>
 
-            <circle cx="0" cy="0" r="30" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.4)">
-              <animate
-                fill="freeze"
-                attributeName="r"
-                from="30"
-                to="100"
-                begin="indefinite"
-                dur="2.5s"
-                repeatCount="1"
-              />
+            <circle cx="0" cy="0" r="50" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.5)">
+              <animate fill="freeze" attributeName="r" from="50" to="130" begin="indefinite" dur="4s" repeatCount="1" />
               <animate
                 fill="freeze"
                 attributeName="stroke"
-                from="hsla(0,0%,0%,0.4)"
+                from="hsla(0,0%,0%,0.5)"
                 to="hsla(0,0%,0%,0)"
                 begin="indefinite"
-                dur="2.5s"
-                repeatCount="1"
-              />
-            </circle>
-
-            <circle cx="0" cy="0" r="50" fill="none" stroke-width="2" stroke="hsla(0,0%,0%,0.2)">
-              <animate
-                fill="freeze"
-                attributeName="r"
-                from="50"
-                to="130"
-                begin="indefinite"
-                dur="2.5s"
-                repeatCount="1"
-              />
-              <animate
-                fill="freeze"
-                attributeName="stroke"
-                from="hsla(0,0%,0%,0.2)"
-                to="hsla(0,0%,0%,0)"
-                begin="indefinite"
-                dur="2.5s"
+                dur="4s"
                 repeatCount="1"
               />
             </circle>
@@ -122,9 +90,9 @@
             id="light"
             in="blur"
             result="light"
-            lighting-color="#green"
+            lighting-color="#aaa"
             surfaceScale="30"
-            diffuseConstant="0.5"
+            diffuseConstant="1.5"
           >
             <!-- azimuth 代表光线的射入角度，从坐标轴原点射出光线，角度为和x轴正半轴的角度，0度为水平向右，然后顺时针旋转 -->
             <feDistantLight azimuth="-90" elevation="60" />
@@ -132,20 +100,6 @@
 
           <!-- <feDisplacementMap in2="gaussWave" in="SourceGraphic" scale="100" result="disGraph" xChannelSelector="R" yChannelSelector="G"/> -->
           <!-- 添加背景 feDiffuseLighting 颜色换成浅色-->
-
-          <!-- <text
-            x="900"
-            y="500"
-            id="sign"
-            font-family="Verdana"
-            height="50"
-            width="500"
-            font-size="35"
-            style="fill: red; text-align: center; overflow: visible; opacity: 1;"
-            filter="url(#underWater)"
-          >
-            &nbsp; superzdd &nbsp;
-          </text> -->
           <feImage
             xlink:href="./water.jpg"
             x="0"
@@ -157,7 +111,7 @@
           />
           <feBlend in="light" in2="bg" result="blend1" mode="multiply" />
 
-          <feBlend in="blend1" in2="sign" mode="lighten" />
+          <!-- <feBlend in="blend1" in2="sign" mode="lighten" /> -->
         </filter>
 
         <filter id="displacementFilter" x="0" y="0" width="10000000000%" height="100%">
@@ -203,8 +157,8 @@
         </filter>
       </defs>
 
-      <!-- <use class="ripple" href="#wave" x="200" y="100" filter="url(#blurMe)" /> -->
       <g x="0" y="0" width="1200" height="1000" filter="url(#displacementFilter)">
+        <!-- <g x="0" y="0" width="1200" height="1000"> -->
         <rect x="0" y="0" width="1200" height="1000" fill="none" filter="url(#blurMe)" />
         <text
           x="900"
