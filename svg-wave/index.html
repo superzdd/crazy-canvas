@@ -132,6 +132,20 @@
 
           <!-- <feDisplacementMap in2="gaussWave" in="SourceGraphic" scale="100" result="disGraph" xChannelSelector="R" yChannelSelector="G"/> -->
           <!-- 添加背景 feDiffuseLighting 颜色换成浅色-->
+
+          <!-- <text
+            x="900"
+            y="500"
+            id="sign"
+            font-family="Verdana"
+            height="50"
+            width="500"
+            font-size="35"
+            style="fill: red; text-align: center; overflow: visible; opacity: 1;"
+            filter="url(#underWater)"
+          >
+            &nbsp; superzdd &nbsp;
+          </text> -->
           <feImage
             xlink:href="./water.jpg"
             x="0"
@@ -141,7 +155,9 @@
             preserveAspectRatio="xMidYMid slice"
             result="bg"
           />
-          <feBlend in="light" in2="bg" mode="multiply" />
+          <feBlend in="light" in2="bg" result="blend1" mode="multiply" />
+
+          <feBlend in="blend1" in2="sign" mode="lighten" />
         </filter>
 
         <filter id="displacementFilter" x="0" y="0" width="10000000000%" height="100%">
@@ -173,16 +189,18 @@
           />
         </filter>
 
-        <feImage
-          xlink:href="./water.jpg"
-          x="0"
-          y="0"
-          width="1920"
-          height="1080"
-          preserveAspectRatio="xMidYMid slice"
-          result="bg"
-        />
-        <feBlend in="displacement" in2="bg" mode="multiply" />
+        <filter id="underWater">
+          <feImage
+            xlink:href="./water.jpg"
+            x="0"
+            y="0"
+            width="1920"
+            height="1080"
+            preserveAspectRatio="xMidYMid slice"
+            result="bg"
+          />
+          <feBlend in="bg" in2="SourceGraphic" mode="lighten" />
+        </filter>
       </defs>
 
       <!-- <use class="ripple" href="#wave" x="200" y="100" filter="url(#blurMe)" /> -->
@@ -191,13 +209,14 @@
         <text
           x="900"
           y="500"
+          id="sign"
           font-family="Verdana"
           height="50"
           width="500"
           font-size="35"
-          style="fill: red; text-align: center; overflow: visible; opacity: 0.2;"
+          style="fill: red; text-align: center; overflow: visible; opacity: 0.5;"
         >
-          &nbsp; Superzdd &nbsp;
+          &nbsp; superzdd &nbsp;
         </text>
       </g>
     </svg>
