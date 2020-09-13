@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				font-size: 14px;
+				padding: 0;
+				margin: 0;
+				background-color: #000000;
+
+				--ani-dur: 4s;
+				--ani-step: calc(var(--ani-dur)/4);
+				--ani-a: 0.5s;
+				--ani-b: 0.75s;
+			}
+
+			.star-container {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				background-color: #000000;
+				perspective: 100rem;
+				transform-style: preserve-3d;
+				perspective-origin: center center;
+			}
+
+			.star {
+				position: absolute;
+				left: 48%;
+				top: 52%;
+				width: 0.3rem;
+				height: 0.3rem;
+				background-color: transparent;
+				border-radius: 50%;
+				/* transform: translateZ(-100rem); */
+			}
+
+			.star-1 {
+				animation: ani-star var(--ani-dur) linear;
+			}
+
+			.star-a-1 {
+				animation: ani-star var(--ani-dur) linear var(--ani-a);
+			}
+
+			.star-b-1 {
+				animation: ani-star var(--ani-dur) linear var(--ani-b);
+			}
+
+
+			@keyframes ani-star {
+				0% {
+					opacity: 0;
+				}
+
+				50% {
+					opacity: 1;
+				}
+
+				100% {
+					opacity: 1;
+					transform: translateZ(100rem);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="star-container">
+		</div>
+		<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+		<script type="text/javascript">
+			let generateShadow = function($item = null, color = '#fff') {
+				let str = '';
+				let max_width = window.innerWidth * 0.05;
+				let max_height = window.innerHeight * 0.05;
+				let half_width = max_width / 2;
+				let half_height = max_height / 2;
+				color = 'red';
+				for (let i = 0; i < 10; i++) {
+					let x = Math.floor(Math.random() * max_width) - half_width;
+					let y = Math.floor(Math.random() * max_height) - half_height;
+					let color = randomColor();
+					str += `${x}rem ${y}rem 1px ${color},`
+				}
+
+				str = str.substring(0, str.length - 1);
+				if ($item) {
+					$item.css('box-shadow', str);
+				}
+
+				return str;
+			}
+
+			let generateID = function() {
+				return Math.floor(Math.random() * 100000000).toString('');
+			}
+
+			let randomColor = function() {
+				const r = Math.floor(Math.random() * 256);
+				const g = Math.floor(Math.random() * 256);
+				const b = Math.floor(Math.random() * 256);
+				return `rgba(${r},${g},${b},1)`;
+			}
+
+			let addGroupStar = function() {
+				const number = 1;
+				let starArr = [];
+				let boxshadow = generateShadow(null);
+				let $starContainer = $('.star-container');
+				let born = -1 * Math.floor(Math.random() * 100);
+				let speed = 50;
+
+				for (let i = 0; i < number; i++) {
+					let $star = $(`<div class="star"></div>`);
+					$star.css({
+						'box-shadow': boxshadow,
+						'transform': `translateZ(${born}rem)`,
+						'animation': `ani-star ${(100-born)/speed}s linear`
+					});
+					$star.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+						function(e) {
+							addGroupStar();
+							$star.remove();
+						});
+					starArr.push($star);
+				}
+
+				for (let $item of starArr) {
+					$starContainer.append($item);
+				}
+			}
+
+			let $starContainer = $('.star-container');
+			const maxDegree = 90;
+			const rotateStep = 5;
+			let rotateXDegree = 0;
+			let rotateYDegree = 0;
+			let lastClientX = 0;
+			let lastClientY = 0;
+			let lastTriggerTime = 0;
+			let mouseInDrag = false;
+			const triggerInterval = 10;
+
+			$starContainer.mousedown(function(e){
+				mouseInDrag = true;
+			});
+			
+			$starContainer.on('mouseout mouseleave mouseup',function(e){
+				mouseInDrag = false;
+			});
+
+			$starContainer.mousemove(function(e) {
+				let now = Date.now();
+
+				if (lastTriggerTime == 0) {
+					lastTriggerTime = now;
+					return;
+				}
+
+				if (triggerInterval > (now - lastTriggerTime)) {
+					return;
+				}
+				
+				if(!mouseInDrag){
+					lastClientX = 0;
+					lastClientY = 0;
+					return;
+				}
+
+
+				lastTriggerTime = now;
+
+				const {
+					clientX,
+					clientY
+				} = e;
+
+				if (lastClientX == 0) {
+					lastClientX = clientX;
+				}
+
+				if (lastClientY == 0) {
+					lastClientY = clientY;
+				}
+
+				rotateXDegree = (lastClientY - clientY) / rotateStep + rotateXDegree;
+
+				if (rotateXDegree > maxDegree) {
+					rotateXDegree = maxDegree;
+				}
+
+				if (rotateXDegree < -maxDegree) {
+					rotateXDegree = -maxDegree;
+				}
+
+				rotateYDegree = (clientX - lastClientX) / rotateStep + rotateYDegree;
+				if (rotateYDegree > maxDegree) {
+					rotateYDegree = maxDegree;
+				}
+
+				if (rotateYDegree < -maxDegree) {
+					rotateYDegree = -maxDegree;
+				}
+
+				lastClientX = clientX;
+				lastClientY = clientY;
+
+				$starContainer.css({
+					'transform': `rotateX(${rotateXDegree}deg) rotateY(${rotateYDegree}deg)`
+				})
+			});
+
+			for (let i = 0; i < 20; i++) {
+				setTimeout(() => {
+					addGroupStar();
+				}, i * 100);
+			}
+		</script>
+	</body>
+</html>
