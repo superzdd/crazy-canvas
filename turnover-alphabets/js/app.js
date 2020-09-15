@@ -16,7 +16,6 @@ let appView = {
     for (let i = 0; i < alphabets.length; i++) {
       let $alpha = $(alphabets[i]);
       $alpha.attr('letter', $alpha.text());
-      // $alpha.css('animation', `turnover ${dur}s  ${1 + dur * 2 * i}s 2 alternate ease`);
       setTimeout(() => {
         $alpha.addClass('fold');
         $alpha.one('animationend', () => {
