@@ -1,0 +1,79 @@
+body {
+	width: 100%;
+	height: 100%;
+	user-select: none;
+	font-size: 16px;
+	background-color: #000000;
+}
+
+.eyes {
+	--eye-diameter: 4rem;
+	--eye-border-width: 0.5rem;
+	--eye-border-color: orange;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.eye {
+	width: var(--eye-diameter);
+	height: var(--eye-diameter);
+	border-radius: 50%;
+	/* border: solid var(eye-border-width) var(--eye-border-color); */
+	border: solid 8px var(--eye-border-color);
+	background-color: #ffffff;
+	box-sizing: border-box;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.eye .rim {
+	position: relative;
+	width: calc(var(--eye-diameter) - 16px);
+	height: calc(var(--eye-diameter) - 16px);
+	border-radius: 50%;
+	box-sizing: border-box;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.eye .ball {
+	--ball-diameter: 10px;
+	width: var(--ball-diameter);
+	height: var(--ball-diameter);
+	background-color: #000;
+	border-radius: 50%;
+}
+
+.eyelid{
+	position: absolute;
+	left: -5px;
+	top: -30px;
+	width: calc(var(--eye-diameter) - 6px);
+	height: calc(var(--eye-diameter) - 6px);
+	border-radius: 30%;
+	background-color: blue;
+	
+	
+}
+
+.ani-wink{
+	animation: wink .2s ease 4 alternate;
+}
+
+@keyframes wink{
+	from{
+		transform: translateX(0px) translateY(0px);
+	}
+	to{
+		transform: translateX(0px) translateY(30px);
+	}
+}
