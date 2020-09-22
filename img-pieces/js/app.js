@@ -16,14 +16,31 @@ let appData = {
 	piecesCenterPoint: null,
 	timeoutMouseMoveHandler: null,
 	timeoutMouseMoveStep: 1000 / 20,
+	bgUrl: '../bg.jpg',
+	showImage: true,
 };
 
 let appView = {
 	listPieces: [],
 	$pieces: $('.pieces'),
+	$cbox: $('#cbox'),
 	init: function() {
 		appView.initPieces();
+		appView.$cbox.change(function(evt) {
+			// console.log(evt);
+			console.log(this);
+			appData.showImage = this.checked;
 
+			if (!appData.showImage) {
+				appView.listPieces.forEach($ele => {
+					$ele.removeClass('hide').addClass('hide');
+				});
+			} else {
+				appView.listPieces.forEach($ele => {
+					$ele.removeClass('hide');
+				});
+			}
+		});
 		setTimeout(() => {
 			appView.initPiecesRotate();
 		}, 1000);
@@ -32,12 +49,19 @@ let appView = {
 			$("body").off('mousemove', appView.bodyMoveHandler);
 
 			appView.listPieces.forEach($ele => {
+				// setTimeout(() => {
+				// 	$ele.css({
+				// 		transform: `translateX(${appData.imgWrapperWidth}px) scaleX(0.01) scaleY(0.01)`,
+				// 		opacity: 0
+				// 	});
+				// }, getRandom(100, 500));
+
 				setTimeout(() => {
 					$ele.css({
-						transform: `translateX(${appData.imgWrapperWidth}px) scaleX(0.01) scaleY(0.01)`,
+						transform: `translateZ(-100rem) rotateX(360deg) rotateY(180deg) rotateZ(230deg)`,
 						opacity: 0
 					});
-				}, getRandom(100, 500));
+				}, parseInt($ele.attr('lv')) * 100 + getRandom(-100, 100));
 			});
 
 			setTimeout(() => {
@@ -89,7 +113,8 @@ let appView = {
 		const {
 			piecesNum,
 			level,
-			imgWrapperWidth
+			imgWrapperWidth,
+			showImage
 		} = appData;
 		const stepPieces = Math.floor(piecesNum / level);
 		const stepWidth = Math.round(imgWrapperWidth / 2 / level); // 设定每一层图片宽度的标准值
@@ -120,7 +145,26 @@ let appView = {
 		$pieces.empty();
 		for (let $item of appView.listPieces) {
 			$pieces.append($item);
-			// $item.addClass('heart');
+
+			const shapeIndex = Math.floor(getRandom(1, 4));
+			switch (shapeIndex) {
+				case 1:
+					$item.addClass('heart');
+					break;
+				case 2:
+					$item.addClass('circle');
+					break;
+				case 3:
+					$item.addClass('polygon');
+					break;
+				default:
+					break;
+			}
+
+			if (!showImage) {
+				$item.addClass('hide');
+			}
+
 			$item.addClass('fade-in');
 			setTimeout(() => {
 				$item.removeClass('fade-in');
@@ -149,8 +193,15 @@ let appView = {
 		$ele.css({
 			left: leftPos,
 			top: topPos,
+		});
+
+		// 塞入子元素
+		let $child = $(`<div class="piece-child"></div>`);
+		$child.css({
 			'background-position': `${-leftPos}px ${-topPos}px`,
 		});
+
+		$ele.append($child);
 	},
 	renderPieces: function(event) {
 		const {
