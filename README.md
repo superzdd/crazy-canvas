@@ -17,3 +17,4 @@ web 前端特效，主要是对 kong66 的躁动 web 的一些项目，自己重
 13. [铅笔，粉笔，浮雕，水墨画](https://superzdd.github.io/crazy-canvas/css-filter-pencil/index.html)
 14. [canvas 像素操作和电视噪声](https://superzdd.github.io/crazy-canvas/noise-snow/index.html)
 15. [反转的字母](https://superzdd.github.io/crazy-canvas/turnover-alphabets/index.html)
+16. [图片拼接](https://superzdd.github.io/crazy-canvas/img-pieces/index.html)
