@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+		<title>svg wave path</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<style type="text/css">
+			svg {
+				position:absolute;
+				top:50%;
+				left:50%;
+				transform: translateX(-50%) translateY(-50%);
+				background-color: #333333;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<svg width="1200" height="200" viewBox="0 0 600 100" preserveAspectRatio="xMidYMid meet">
+				<defs>
+					<pattern id="m0" patternUnits="objectBoundingBox" patternContentUnits="userSpaceOnuse" x="0" y=".3" width="0.166"
+					 height="3">
+						<animate attributeName="x" dur="3s" from="0" to="1" repeatCount="indefinite" />
+						<animate attributeName="y" dur="20s" calcMode="linear" values="1;0;1" keyTimes="0;0.5;1" repeatCount="indefinite" />
+						<path id="back" fill="blue" d="M0,6C21.135,6,26.046,19.988,50,20S84.138,5.939,100,6V33H0S-0.1,6.467,0,6Z">
+							<animate attributeName="d" keyTimes="0;0.5;1" begin="0" dur="10s" calcMode="linear" repeatCount="indefinite" values = "
+							M0,6c21.135,0,26.046,3.987,50,4s34.138-4.061,50-4V33H0S-0.1,6.467,0,6Z;
+							M0,6C21.135,6,26.046,19.988,50,20S84.138,5.939,100,6V33H0S-0.1,6.467,0,6Z;
+							M0,6c21.135,0,26.046,3.987,50,4s34.138-4.061,50-4V33H0S-0.1,6.467,0,6Z;
+							" />
+						</path>
+						<path id="front" fill="#1575f2" d="M0,17C21.135,17,26.046,5.987,50,6s34.138,10.939,50,11V33H0S-0.1,17.467,0,17Z">
+							<animate attributeName="d" keyTimes="0;0.5;1" begin="0" dur="10s" calcMode="linear" repeatCount="indefinite" values = "
+							M0,17c21.135,0,26.046-7.013,50-7s34.138,6.939,50,7V33H0S-0.1,17.467,0,17Z;
+							M0,17C21.135,17,26.046,5.987,50,6s34.138,10.939,50,11V33H0S-0.1,17.467,0,17Z;
+							M0,17c21.135,0,26.046-7.013,50-7s34.138,6.939,50,7V33H0S-0.1,17.467,0,17Z;
+							" />
+						</path>
+						<rect x="0" y="30" width="100" height="80" style="fill:#1575f2"></rect>
+					</pattern>
+					
+					<mask id="mm" x="0" y="0" width="1" height="1" maskUnits="objectBoundingBox" maskContentUnits="userSpaceOnUse">
+						<text x="300" y="85" width="600" heihgt="100" lengthAdjust="spacingAndGlyphs" filter="url(#iiss)" style="font-size:100;fill:white;font-weight:600;text-anchor: middle;">SUPERZDD</text>
+					</mask>
+					
+					<filter id="iiss">
+						<feComponentTransfer in="SourceAlpha">
+							<feFuncA type="table" tableValues="1 0" />
+						</feComponentTransfer>
+						<feGaussianBlur stdDeviation="5" result="blur"/>
+						<feOffset dx="0" dy="0" in="blur" result="offsetblur" />
+						<feFlood floodColor="#000" floodOpacity="1" result="color" />
+						<feComposite in2="offsetblur" operator="in" />
+						<feComposite in2="SourceGraphic" operator="in" />
+						<feMerge>
+							<feMergeNode in="SourceGraphic" />
+							<feMergeNode/>
+						</feMerge>
+					</filter>
+					
+					<filter id="innershadow" x0="-50%" y0="-50%" width="200%" height="200%">
+						<feComponentTransfer in="SourceAlpha">
+							<feFuncA type="table" tableValues="1 0" />
+						</feComponentTransfer>
+						<feGaussianBlur stdDeviation="5" />
+						<feOffset dx="0" dy="0" result="offsetblur" />
+						<feFlood floodColor="#7059ef" floodOpacity="1" result="color" />
+						<feComposite in2="offsetblur" operator="in" />
+						<feComposite in2="SourceAlpha" operator="in" />
+						<feMerge>
+							<feMergeNode in="SourceGraphic" />
+							<feMergeNode />
+						</feMerge>
+					</filter>
+				</defs>
+				<rect x="0" y="0" width="600" height="100" style="fill:orange;mask:url(#mm);" />
+				<rect x="0" y="0" width="600" height="100" style="fill:url(#m0);mask:url(#mm)" />
+				<image x="250" y="100" href="./imgs/jaws-2.png" width="100" height="170" style="mask:url(#mm)">
+					<animate attributeName="y" dur="20s" calcMode="linear" values="100;100;-30;100;100" keyTimes="0;0.4;0.5;0.6;1" repeatCount="indefinite"/>
+				</image>
+			</svg>
+		</div>
+	</body>
+</html>

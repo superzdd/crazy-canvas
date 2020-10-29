@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+		<title>svg pattern</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<style type="text/css">
+			svg {
+				background-color: #333333;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<svg width="1200px" height="1200px" viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid meet">
+				<defs>
+					<pattern id="m0" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" x="0" y="0" width=".1"
+					 height="1">
+						<rect x="0" y="0" width=".1" height="1" style="fill:#FF6633" rx="0.5"></rect>
+					</pattern>
+
+					<pattern id="m1" patternUnits="objectBoundingBox" patternContentUnits="userSpaceOnUse" x="0" y="0" width=".1"
+					 height="1">
+						<rect x="0" y="0" width="100" height="100" style="fill:#FF6633" rx="50"></rect>
+					</pattern>
+
+					<pattern id="m2" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse" x="0" y="360" width="200"
+					 height="100">
+						<rect x="0" y="0" width="100" height="100" style="fill:#FF6633" rx="50"></rect>
+					</pattern>
+
+					<pattern id="m3" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse" x="0" y="480" width="50"
+					 height="100">
+						<rect x="0" y="0" width="100" height="100" style="fill:#FF6633" rx="50"></rect>
+					</pattern>
+
+					<pattern id="m4" patternContentUnits="objectBoundingBox" width="10%"
+					 height="20%">
+						<circle cx=".05" cy=".1" r=".05" style="fill:red"></circle>
+					</pattern>
+
+					<pattern id="p2" width="20%" height="20%" patternContentUnits="objectBoundingBox">
+						<circle cx=".1" cy=".1" r=".1" />
+					</pattern>
+				</defs>
+
+				<!-- <rect width="1200" height="600" fill="#000" x="0" y="0"/> -->
+
+				<rect width="1000" height="100" />
+
+				<!-- Rounded corner rectangle -->
+				<rect x="0" y="120" width="1000" height="100" fill="url(#m0)" />
+
+				<rect x="0" y="240" width="1000" height="100" fill="url(#m1)" />
+
+				<rect x="0" y="360" width="1000" height="100" fill="url(#m2)" />
+
+				<rect x="0" y="480" width="1000" height="100" fill="url(#m3)" />
+
+				<rect x="0" y="600" width="1000" height="100" fill="url(#m4)" />
+
+				<rect x="0" y="720" width="80" height="80" fill="url(#p2)" />
+			</svg>
+		</div>
+	</body>
+</html>
