@@ -20,3 +20,4 @@ web 前端特效，主要是对 kong66 的躁动 web 的一些项目，自己重
 16. [图片拼接](https://superzdd.github.io/crazy-canvas/img-pieces/index.html)
 17. [文本像素动画2](https://superzdd.github.io/crazy-canvas/text-pixel-animation/index.html)
 18. [svg蒙版和图案](https://superzdd.github.io/crazy-canvas/svg-mask/index.html)
+19. [白雪擦除](https://superzdd.github.io/crazy-canvas/snow-clean/index.html)

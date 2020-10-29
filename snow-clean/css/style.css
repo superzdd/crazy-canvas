@@ -1,0 +1,64 @@
+body {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.ball {
+	width: var(--ball-dia);
+	height: var(--ball-dia);
+	border-radius: 50%;
+	position: absolute;
+	background-color: #000;
+	z-index: 10;
+}
+
+.ani-disappear {
+	animation: disappear 1s linear 3s forwards;
+}
+
+@keyframes disappear {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+.ball--first {
+	left: calc(50vw - var(--ball-dia) * 0.5);
+	top: calc(50vh - var(--ball-dia) * 0.5);
+}
+
+.bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	z-index: 0;
+}
+
+.white-cover {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	z-index: 5;
+	filter: blur(10px);
+	mix-blend-mode: lighten;
+}
+
+.white-cover span {
+	display: block;
+	margin-left: 10rem;
+	margin-top: 10rem;
+	font-size: 10rem;
+	text-shadow: 2px 2px #000000;
+	color: #000;
+}
