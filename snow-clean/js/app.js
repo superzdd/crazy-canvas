@@ -139,15 +139,20 @@ let appView = {
 				y: -100
 			};
 		});
-		
-		window.setInterval(()=>{
-			if(!appView.dragEnable && appView.ballList.length>200){
-				while(appView.ballList.length>200){
-					let $b = appView.ballList.pop();
-					$b.remove();
-				}
-			}
-		},2000)
+
+		// window.setInterval(() => {
+		// 	if (!appView.dragEnable) {
+
+		// 		$('div').remove('.ball');
+		// 		appView.ballList = [];
+		// 		// while (i++ < count) {
+		// 		// 	if (appView.dragEnable) break;
+		// 		// 	let $b = appView.ballList.pop();
+		// 		// 	$b.remove();
+		// 		// 	console.log('remove ', appView.ballList.length);
+		// 		// }
+		// 	}
+		// }, 4000)
 	},
 	createNewBall: function(x, y) {
 		const {
@@ -160,23 +165,30 @@ let appView = {
 			`<div class="ball ${animationClass}" id="${id}" style="left:${x-radius}px;top:${y-radius}px"></div>`;
 
 		let $ball = null;
+		let isNew = false;
 		if (appView.ballList.length > 0) {
 			$ball = appView.ballList.pop();
 			$ball.removeClass(animationClass).addClass(animationClass).css('opacity', 1);
 			$ball.css({
 				left: `${x-radius}px`,
 				top: `${y-radius}px`
-			})
+			});
+			console.log('pop ',
+				appView.ballList.length);
 		} else {
 			appView.$white.append(dom);
-			$ball = $(`#${id}`)
-			$ball.on('animationend', () => {
-				$ball.removeClass(animationClass).css('opacity', 0);
-				appView.ballList.push($ball);
-			});
+			$ball = $(`#${id}`);
+			isNew = true;
 		}
+		setTimeout(() => {
+			$ball.removeClass(animationClass).css('opacity', 0);
+			$('div').remove(`#${id}`);
+			// if (isNew) {
+			// 	appView.ballList.push($ball);
+			// }
+			// console.log('add ', appView.ballList.length);
+		}, 4000);
 
-		console.log(appView.ballList.length);
 	},
 };
 
