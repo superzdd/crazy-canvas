@@ -26,7 +26,7 @@ let ball = function(x = 0, y = 0, rad, s_x = 1, s_y = 1) {
 	this.s_x = s_x; // 水平方向运动速度
 	this.s_y = s_y; // 垂直方向运动速度
 	this.color = `rgba(${random255()},${random255()},${random255()},0.5)`; //颜色
-	this.life = 800;
+	this.life = 1000;
 	this.born = Date.now();
 	this.needDestory = false;
 
@@ -157,24 +157,23 @@ let distance = function(p1, p2) {
 
 let appData = {
 	lastRenderTime: 0,
-	renderInterval: 1000 / 20,
-	totalDots: 100, // 总共点的数量
+	renderInterval: 1000 / 120,
 	dotRadius: 2,
 	progress: {
 		defaultWidth: 1000,
-		defaultStep: 1,
+		defaultStep: 0.1,
 		width: 0,
-		height: 80,
+		height: 60,
 		left: 0,
 		top: 0,
 		val: 0,
-		step: 1,
+		step: 0.1,
 		bg: '#333333',
 		minHue: 0,
 		maxHue: 90,
 		intLock100: null,
 	},
-	dotSpeedBasicX: 600, // 点基准速度 px/s
+	dotSpeedBasicX: 500, // 点基准速度 px/s
 	dotSpeedBasicY: 500, // 点基准速度 px/s
 	g: 1000, // 重力加速度 px/s2
 }
@@ -188,7 +187,7 @@ let appView = {
 		initCanvas(appView.$canvas);
 
 		// 初始化进度条
-		appData.progress.width = Math.min(appData.progress.defaultWidth, canvasInfo.width);
+		appData.progress.width = Math.max(appData.progress.defaultWidth, canvasInfo.width * 0.8);
 		appData.progress.left = (canvasInfo.width - appData.progress.width) / 2;
 		appData.progress.top = (canvasInfo.height - appData.progress.height) / 2;
 
@@ -210,8 +209,9 @@ let appView = {
 	},
 	createNewBall: function(x, y, step) {
 		let increase = 80 * step;
-		let s_x = (Math.random() * (appData.dotSpeedBasicX + increase) * -1).toFixed(2);
-		let s_y = (Math.random() * (appData.dotSpeedBasicY + increase) * -1).toFixed(2);
+		let s_x = ((increase + (Math.random() * 0.4 + 0.6) * appData.dotSpeedBasicX) * -1).toFixed(2);
+		let s_y = ((increase + (Math.random() * 0.4 + 0.6) * appData.dotSpeedBasicY) * -1).toFixed(2);
+
 		let rad = (appData.dotRadius * Math.random()).toFixed(2) + 1;
 
 		let b = null;
@@ -271,7 +271,7 @@ let appView = {
 			ctx.font = '25px arial';
 			ctx.fillStyle = 'white';
 			ctx.textAlign = 'left';
-			ctx.fillText(`加载倍率：${progress.step}倍速`, progress.left, progress.top - 100);
+			ctx.fillText(`加载倍率：${progress.step*10}倍速`, progress.left, progress.top - 100);
 
 			ctx.font = '50px arial';
 			ctx.fillStyle = 'white';
@@ -280,7 +280,7 @@ let appView = {
 
 			const x = progress.left + currentProgress - 5;
 			const y = progress.top;
-			for (let i = 0; i < Math.round(5 * progress.step); i++) {
+			for (let i = 0; i < Math.round(20 * progress.step); i++) {
 				let ball = appView.createNewBall(x, y, progress.step);
 			}
 
