@@ -8,6 +8,10 @@ function getColor() {
 	let g = getRandom(0, 255);
 	let b = getRandom(0, 255);
 
+	r = 255;
+	g = 0;
+	b = 0;
+
 	// return `rgb(${r},${g},${b})`;
 	return [r, g, b];
 }
@@ -36,38 +40,47 @@ function lerp_easeInOutCubic(normal, min, max) {
  * @param {int} winSize.height 屏幕高度
  */
 let ball = function(born, dest, rad = 5, winSize) {
-	this.org_x = born.x; // 初始圆心横坐标
-	this.org_y = born.y; // 初始圆心纵坐标
-	this.org_x_percent = born.x / winSize.width;
-	this.org_y_percent = born.y / winSize.height;
 	this.rad = rad; // 半径
-	this.d_x = 0; // 水平方向运动距离
-	this.d_y = 0; // 垂直方向运动距离
-	this.dest = dest;
-	this.s_x = 0; // 水平方向运动速度
-	this.s_y = 0; // 垂直方向运动速度
-	this.winSize = winSize;
 	this.life = 10000;
-	this.born = Date.now();
+	this.org_born = {
+		x: born.x,
+		y: born.y
+	};
+
+	this.org_dest = {
+		x: dest.x,
+		y: dest.y
+	};
+
+	this.born = Object.assign({}, born);
+	this.dest = Object.assign({}, dest);
+	this.act = {
+		x: born.x,
+		y: born.y
+	};
+	this.speed = {
+		x: 0,
+		y: 0
+	};
 	this.needDestory = false;
 	this.color = getColor();
 	this.ended = false;
 	this.isReverse = false; // 正在从终点返回起点
 	this.init = function() {
-		const duration = 2 * 60; // 60fps
-		let offset_x = this.dest.x - this.org_x;
-		let offset_y = this.dest.y - this.org_y;
-		this.s_x = offset_x / duration;
-		this.s_y = offset_y / duration;
+		this.refresh(this.dest);
 	}
 
 	this.refresh = function(dest) {
-		this.dest = dest;
-		const duration = 2 * 60; // 60fps
-		let offset_x = dest.x - this.org_x;
-		let offset_y = dest.y - this.org_y;
-		this.s_x = offset_x / duration;
-		this.s_y = offset_y / duration;
+		this.ended = false;
+		this.dest = Object.assign({}, dest);
+		const duration = 1 * 60; // 60fps
+		this.speed = {
+			x: ((dest.x - this.act.x) / duration),
+			y: ((dest.y - this.act.y) / duration)
+		}
+		console.log(
+			`refresh success, born: ${JSON.stringify(this.born)}, dest: ${JSON.stringify(this.dest)}, speed: ${JSON.stringify(this.speed)}`
+		);
 	}
 
 	/**
@@ -76,89 +89,78 @@ let ball = function(born, dest, rad = 5, winSize) {
 	 * @param {int} winSize.width 屏幕宽度
 	 * @param {int} winSize.height 屏幕高度
 	 */
-	this.render = function(speed) {
-		if (this.needDestory || Date.now() - this.born > this.life) {
-			this.needDestory = true;
-		}
-
+	this.render = function() {
 		if (this.ended) {
-			return {
-				x: this.org_x + this.d_x,
-				y: this.org_y + this.d_y
-			};
+			return this.isReverse ? this.born : this.dest;
 		}
 
-		if (!speed) {
-			try {
-				speed = lerp_easeInOutCubic(Math.round(Math.abs((this.org_x + this.d_x) / this.dest.x * 100)) / 100, 0.5, 2);
-			} catch (ex) {
-				speed = 1;
-			}
-		}
-
-		this.d_x += speed * this.s_x;
-		this.d_y += speed * this.s_y;
-
-		// 碰撞检测
-		// 如果球触碰到了屏幕边缘，对应方向速度取反
-		// 获取当前圆心坐标
-		let act_x = this.org_x + this.d_x;
-		let act_y = this.org_y + this.d_y;
-		let winSize = this.winSize;
-
-		if (!this.ended && !this.isReverse && this.reachEnd(act_x, act_y)) {
-			this.fixEnd(act_x, act_y);
+		if (!this.ended && !this.isReverse && this.reachEnd()) {
+			this.fixEnd();
 			this.ended = true;
 			this.endedTime = Date.now();
-		} else if (!this.ended && this.isReverse && this.reachOrg(act_x, act_y)) {
-			// this.fixOrg(act_x,act_y);
+		} else if (!this.ended && this.isReverse && this.reachOrg()) {
+			this.fixOrg();
 			this.ended = true;
 			this.endedTime = Date.now();
+		} else {
+			this.act.x = this.act.x + this.speed.x;
+			this.act.y = this.act.y + this.speed.y;
 		}
 
-		return {
-			x: act_x,
-			y: act_y,
-			speed: speed,
-		};
+		return this.act;
 	};
 
-	this.fixEnd = function(act_x, act_y) {
-		this.d_x = this.dest.x - this.org_x;
-		this.d_y = this.dest.y - this.org_y;
+	this.fixEnd = function() {
+		this.act = this.dest;
 	}
 
-	this.fixOrg = function(act_x, act_y) {
-		this.d_x = this.org_x - this.dest.x;
-		this.d_y = this.org_y - this.dest.y;
+	this.fixOrg = function() {
+		this.act = this.dest;
 	}
 
-	this.reachEnd = function(act_x, act_y) {
-		return ((this.s_x >= 0 && (act_x + 0.5) >= this.dest.x) || (this.s_x <= 0 && (act_x - 0.5) <= this.dest
-			.x)) && ((this.s_y >=
-			0 && (act_y + 0.5) >= this.dest.y) || (this.s_y <= 0 && (act_y - 0.5) <= this.dest.y))
+	this.reachEnd = function() {
+		const {
+			x,
+			y
+		} = this.act;
+		const {
+			x: s_x,
+			y: s_y
+		} = this.speed;
+		const {
+			x: d_x,
+			y: d_y
+		} = this.dest;
+
+		return ((s_x >= 0 && x >= d_x) || (s_x <= 0 && x <= d_x)) &&
+			((s_y >= 0 && y >= d_y) || (s_y <= 0 && y <= d_y))
 	};
 
 	this.reachOrg = function(act_x, act_y) {
-		return ((this.s_x > 0 && act_x >= this.org_x) || (this.s_x <= 0 && act_x <= this.org_x)) &&
-			((this.s_y >
-				0 && act_y >= this.org_y) || (this.s_y <= 0 && act_y <= this.org_y))
+		const {
+			x,
+			y
+		} = this.act;
+		const {
+			x: s_x,
+			y: s_y
+		} = this.speed;
+		const {
+			x: b_x,
+			y: b_y
+		} = this.born;
 
-		// return false;
-	};
-
-	this.updateWinSize = function(winSize) {
-		this.winSize = winSize;
-		this.org_x = winSize.width * this.org_x_percent;
-		this.org_y = winSize.height * this.org_x_percent;
+		return ((s_x >= 0 && x >= b_x) || (s_x <= 0 && x <= b_x)) &&
+			((s_y >= 0 && y >= b_y) || (s_y <= 0 && y <= b_y))
 	};
 
 	this.reverse = function(r) {
-		this.ended = false;
-		if (!this.isReverse) {
-			this.s_x *= -1;
-			this.s_y *= -1;
+		if (r) {
+			this.refresh(this.born);
+		} else {
+			this.refresh(this.org_dest);
 		}
+		console.log(`reverse success ${JSON.stringify(this.speed)}`);
 		this.isReverse = r;
 	}
 
@@ -170,18 +172,32 @@ let ball = function(born, dest, rad = 5, winSize) {
 	b.init();
 };
 
+// 画布基本信息
+let canvasInfo = {
+	ctx: null, // canvas的实例对象
+	stage: null, // createjs的canvas实例对象
+	width: 0, // 画布的宽度，指的是画布的逻辑宽度，即屏幕宽度像素数量 * ratio（每像素包含的实际像素）
+	height: 0, // 画布的高度，指的是画布的逻辑高度，即屏幕高度像素数量 * ratio（每像素包含的实际像素）
+	centerX: 0, // 画布中心点x
+	centerY: 0, // 画布中心点y
+	distanceToCenter: 0, // 左上角到中心点的距离
+}
+
+let rem = new Rem();
+rem.getWindowSize();
+
 let appData = {
-	screenWidth: 500,
-	screenHeight: 500,
-	xOffset: 250,
-	yOffset: 250,
+	screenWidth: Math.floor(rem.width * 0.9),
+	screenHeight: Math.floor(rem.height * 0.9),
+	xOffset: 0,
+	yOffset: 0,
 	inc: 0.01,
 	count: 0,
 	frameCount: 0,
 	listTexts: [],
 	listTextIdx: 0,
 	listDots: [],
-	maxDotsCount: 300,
+	maxDotsCount: 200,
 	dotsEndedDuration: 2000, // 点点到达终点后的静止时间
 	dotsEndedTime: null, // 点点静止时间
 	dotsInReverseAnimation: false,
@@ -189,6 +205,7 @@ let appData = {
 		this.xOffset = Math.ceil(this.screenWidth / 2);
 		this.yOffset = Math.ceil(this.screenHeight / 2);
 	},
+	texts: ['一', '四']
 }
 
 let appView = {
@@ -201,19 +218,37 @@ let appView = {
 			screenHeight
 		} = appData;
 		background(0);
-		textSize(100);
+		textSize(500);
+		textAlign(CENTER, CENTER);
 		fill(255);
 		text(a, screenWidth / 2, screenHeight / 2);
 	},
 	recordText: function() {
 		let arr = [];
 		loadPixels();
-		for (let i = 0; i < pixels.length; i += 4) {
-			if (pixels[i] == 255) {
-				arr.push(i / 4);
+		const {
+			screenWidth: width,
+			screenHeight: height
+		} = appData;
+
+		let step = 10;
+
+		for (let y = 0; y < height; y += step) {
+			for (let x = 0; x < width; x += step) {
+				let i = y * width * 4 + x * 4;
+				if (pixels[i] == 255 && pixels[i + 1] == 255 && pixels[i + 2] == 255) {
+					arr.push({
+						x,
+						y
+					});
+				}
 			}
 		}
 
+		console.log(`前十个点位置:`);
+		for (let i = 0; i < 10; i++) {
+			console.log(arr[i]);
+		}
 		return arr;
 	},
 	initAllDots: function(arr) {
@@ -225,21 +260,24 @@ let appView = {
 
 		let retList = [];
 		let step = 1;
-		if (arr.length >= maxDotsCount) {
-			step = arr.length / maxDotsCount;
-		}
 
 		for (let i = 0; i < maxDotsCount; i++) {
-			const no = Math.floor(i * step);
 			const r = 5;
 			const born = {
 				x: getRandom(0, screenWidth),
 				y: getRandom(0, screenHeight)
 			};
-			const dest = {
-				x: (arr[no] % screenWidth),
-				y: (arr[no] / screenWidth)
-			};
+
+
+			let dest = null;
+			if (i < arr.length) {
+				dest = arr[i];
+			} else {
+				dest = born;
+			}
+
+			// console.log(`no: ${i}, dest: ${JSON.stringify(dest)}, width: ${screenWidth}`);
+
 			const winSize = {
 				width: screenWidth,
 				height: screenHeight
@@ -257,18 +295,16 @@ let appView = {
 			listDots
 		} = appData;
 
-		let step = 1;
-		if (arr.length >= maxDotsCount) {
-			step = arr.length / maxDotsCount;
-		}
-
 		for (let i = 0; i < maxDotsCount; i++) {
-			const no = Math.floor(i * step);
-			const r = 5;
-			const dest = {
-				x: (arr[no] % screenWidth),
-				y: (arr[no] / screenWidth)
-			};
+			let dest = null;
+			if (i >= arr.length) {
+				dest = listDots[i].org_dest;
+			} else {
+				dest = arr[i];
+			}
+
+			listDots[i].ended = false;
+			listDots[i].isReverse = false; // 正在从终点返回起点
 			listDots[i].refresh(dest);
 		}
 	}
@@ -286,34 +322,30 @@ function setup() {
 	createCanvas(screenWidth, screenHeight);
 	pixelDensity(1);
 	background(0);
-	appView.drawText('闪现');
-	listTexts.push(appView.recordText());
-	appView.drawText('惩击');
-	listTexts.push(appView.recordText());
-	appView.drawText('治疗');
-	listTexts.push(appView.recordText());
-	appView.drawText('眩晕');
-	listTexts.push(appView.recordText());
-	appView.drawText('狂暴');
-	listTexts.push(appView.recordText());
+	strokeWeight(0);
+
+	let maxDots = 0;
+	for (let i = 0; i < appData.texts.length; i++) {
+		appView.drawText(appData.texts[i]);
+		const list = appView.recordText();
+		maxDots = Math.max(list.length, maxDots);
+		listTexts.push(list);
+	}
+	appData.maxDotsCount = maxDots;
 	appData.listDots = appView.initAllDots(listTexts[listTextIdx]);
-	stroke(255);
 }
 
 function draw() {
 	background(0);
-
+	strokeWeight(0);
 	let endedCount = 0;
 	let isReverse = false;
-	var speedAll = null;
 	for (let dot of appData.listDots) {
 		let {
 			x,
 			y,
 			speed
-		} = dot.render(speedAll);
-
-		speedAll = speed;
+		} = dot.render();
 
 		stroke(...dot.color);
 		strokeWeight(dot.rad);
@@ -322,14 +354,11 @@ function draw() {
 		isReverse = dot.isReverse || isReverse;
 	}
 
-	if (endedCount / appData.listDots.length > 0.95) {
+
+	if (endedCount === appData.listDots.length) {
 		const now = Date.now();
 		if (!appData.dotsEndedTime) {
 			appData.dotsEndedTime = now;
-		}
-
-		for (let dot of appData.listDots) {
-			dot.forceEnded();
 		}
 
 		if (now - appData.dotsEndedTime >= appData.dotsEndedDuration) {
@@ -341,12 +370,15 @@ function draw() {
 
 				let arr = appData.listTexts[appData.listTextIdx];
 				appView.refreshAllDots(arr);
+			} else {
+				for (let dot of appData.listDots) {
+					dot.reverse(!isReverse);
+				}
 			}
 
 			appData.dotsEndedTime = null;
-			for (let dot of appData.listDots) {
-				dot.reverse(!isReverse);
-			}
+
+
 		}
 	}
 
