@@ -23,3 +23,4 @@ web 前端特效，主要是对 kong66 的躁动 web 的一些项目，自己重
 19. [白雪擦除](https://superzdd.github.io/crazy-canvas/snow-clean/index.html)
 20. [看鼠标的眼睛](https://superzdd.github.io/crazy-canvas/eye-balls/index.html)
 21. [canvas绘画基础-2](https://superzdd.github.io/crazy-canvas/canvas-dot-lines/index.html)
+22. [加载动画](https://superzdd.github.io/crazy-canvas/canvas-loading-2/index.html)
