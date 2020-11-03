@@ -16,12 +16,21 @@ let appView = {
     for (let i = 0; i < alphabets.length; i++) {
       let $alpha = $(alphabets[i]);
       $alpha.attr('letter', $alpha.text());
-      setTimeout(() => {
-        $alpha.addClass('fold');
-        $alpha.one('animationend', () => {
-          $alpha.removeClass('fold');
-        });
-      }, 1000 + dur * 1000 * 2 * i);
+	  setTimeout(() => {
+	    $alpha.addClass('fold');
+	    $alpha.one('animationend', () => {
+	      $alpha.removeClass('fold');
+	    });
+	  }, 200 + dur * 200 * 2 * i);
+	  setInterval(()=>{
+		  setTimeout(() => {
+		    $alpha.addClass('fold');
+		    $alpha.one('animationend', () => {
+		      $alpha.removeClass('fold');
+		    });
+		  }, 200 + dur * 200 * 2 * i);
+	  },2000);
+      
     }
   },
 };

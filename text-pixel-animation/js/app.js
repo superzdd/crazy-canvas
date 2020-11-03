@@ -205,7 +205,7 @@ let appData = {
 		this.xOffset = Math.ceil(this.screenWidth / 2);
 		this.yOffset = Math.ceil(this.screenHeight / 2);
 	},
-	texts: ['一', '四']
+	texts: ['一', '三', '五']
 }
 
 let appView = {
