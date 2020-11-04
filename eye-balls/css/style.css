@@ -3,77 +3,164 @@ body {
 	height: 100%;
 	user-select: none;
 	font-size: 16px;
-	background-color: #000000;
+	background-color: #fff;
 }
+
+/* #beach {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 0;
+}
+
+#sand {
+	width: 100%;
+	height: 40%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 0;
+	background-color: rgb(248, 231, 150);
+}
+
+#ocean {
+	width: 100%;
+	height: 40%;
+	position: absolute;
+	left: 0;
+	top: 30%;
+	z-index: 10;
+	background-color: rgb(105, 192, 209);
+	display:flex;
+}
+
+.ocean-p1{
+	width:
+}
+
+#sky {
+	width: 200%;
+	height: 30%;
+	position: absolute;
+	left: -50%;
+	top: 0;
+	z-index: 5;
+	background: radial-gradient(ellipse at bottom, rgba(255,255,255,0.5), transparent),linear-gradient(rgba(56, 123, 185, 1), rgba(56, 123, 185, 1));
+}
+ */
+
+#bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 0;
+}
+
+.bg--eye{
+	background: url(../bg.jpg) center center no-repeat;
+}
+
+.bg--noeye{
+	background: url(../bg-noeye.jpg) center center no-repeat;
+}
+
 
 .eyes {
 	--eye-diameter: 4rem;
 	--eye-border-width: 0.5rem;
 	--eye-border-color: orange;
+	width: 14.5rem;
 	position: absolute;
 	left: 50%;
 	top: 50%;
+	transform: translateX(-52%) translateY(-19%);
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 }
 
 .eye {
 	width: var(--eye-diameter);
-	height: var(--eye-diameter);
-	border-radius: 50%;
+	height: calc(var(--eye-diameter)*2);
+	/* border-radius: 50%; */
 	/* border: solid var(eye-border-width) var(--eye-border-color); */
-	border: solid 8px var(--eye-border-color);
-	background-color: #ffffff;
+	/* border: solid 8px var(--eye-border-color); */
+	background-color: transparent;
 	box-sizing: border-box;
 	overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	overflow: visible;
 }
 
 .eye .rim {
 	position: relative;
-	width: calc(var(--eye-diameter) - 16px);
-	height: calc(var(--eye-diameter) - 16px);
-	border-radius: 50%;
+	width: calc(var(--eye-diameter));
+	height: calc(var(--eye-diameter)*2);
+	/* border-radius: 50%; */
 	box-sizing: border-box;
 	overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	overflow: visible;
 }
 
 
 .eye .ball {
-	--ball-diameter: 10px;
+	--ball-diameter: 1rem;
+	--ball-height: 3.8rem;
 	width: var(--ball-diameter);
-	height: var(--ball-diameter);
-	background-color: #000;
+	height: var(--ball-height);
+	/* background-color: #000; */
 	border-radius: 50%;
+	position: relative;
+	margin-top: calc(var(--eye-diameter)*-1);
+	background: radial-gradient(ellipse 50% 50% at 35% 35% , #fff, #fff 30%, #000 30%, #000);
+	overflow: hidden;
 }
 
-.eyelid{
+/* .ball::after {
+	content: "";
+	--ball-diameter: 0.3rem;
+	--ball-height: 1.05rem;
 	position: absolute;
-	left: -5px;
-	top: -30px;
-	width: calc(var(--eye-diameter) - 6px);
-	height: calc(var(--eye-diameter) - 6px);
-	border-radius: 30%;
-	background-color: blue;
-	
-	
+	width: var(--ball-diameter);
+	height: var(--ball-height);
+	background-color: #fff;
+	border-radius: 50%;
+	left: 22%;
+	top: 13%;
+	opacity: 0.8;
+} */
+
+.eyelid {
+	position: absolute;
+	left: 0px;
+	top: calc(-1*var(--ball-height));
+	--ball-diameter: 1rem;
+	--ball-height: 3.8rem;
+	width: var(--ball-diameter);
+	height: var(--ball-height);
+	border-radius: 50%;
+	background: #fff;
 }
 
-.ani-wink{
+.ani-wink {
 	animation: wink .2s ease 4 alternate;
 }
 
-@keyframes wink{
-	from{
+@keyframes wink {
+	from {
 		transform: translateX(0px) translateY(0px);
 	}
-	to{
-		transform: translateX(0px) translateY(30px);
+
+	to {
+		transform: translateX(0px) translateY(calc(var(--ball-height)));
 	}
 }
