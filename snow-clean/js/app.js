@@ -80,59 +80,91 @@ let appData = {
 let appView = {
 	ballList: [],
 	$white: $('.white-cover'),
+	$windowBorder: $('#window-border'),
 	dragEnable: false,
 	lastMovePos: {
 		x: -100,
 		y: -100
 	},
-	init: function() {
-		$('body').css("--ball-dia", `${(appData.radius||10)*2}px`);
+	whiteInfo: {
+		x: 0,
+		y: 0,
+	},
 
-		appView.$white.on('touchstart mousedown', () => {
+	init: function() {
+		appView.initRadius();
+
+		let rectInfo = $('#window-wrapper')[0].getClientRects()[0];
+		console.log(`=== rectInfo: ${JSON.stringify(rectInfo)}`);
+		appView.whiteInfo = {
+			x: rectInfo.left,
+			y: rectInfo.top
+		};
+		
+		appView.initSnowCleanAction();
+		// console.log(`=== whiteInfo: ${JSON.stringify(whiteInfo)}`);
+
+	},
+	initRadius: function() {
+		const {
+			width
+		} = rem;
+		appData.radius = width / 50;
+		$('body').css("--ball-dia", `${(appData.radius||10)*2}px`);
+	},
+	initSnowCleanAction: function() {
+		let {
+			$windowBorder
+		} = appView;
+
+		$windowBorder.on('touchstart mousedown', () => {
 			appView.dragEnable = true;
 		});
 
-		appView.$white.on('touchmove mousemove', (e) => {
-			if (appView.dragEnable) {
-				const {
-					clientX,
-					clientY
-				} = e;
-				appView.createNewBall(clientX, clientY);
-				let {
-					x,
-					y
-				} = appView.lastMovePos;
+		$windowBorder.on('touchmove mousemove', (e) => {
+			if (!appView.dragEnable) return;
 
-				const disX = Math.abs(x - clientX);
-				const disY = Math.abs(y - clientY);
-				const radius = appData.radius;
-				if (x >= 0 && y >= 0 && (disX > radius || disY > radius)) {
-					let steps, stepx, stepy;
-					if (disX > disY) {
-						steps = Math.abs(Math.floor((clientX - x) / radius));
-					} else {
-						steps = Math.abs(Math.floor((clientY - y) / radius));
-					}
+			// let {clientX,clientY,screenX,screenY,pageX,pageY,offsetX,offsetY} = e;
+			// console.log({clientX,clientY,screenX,screenY,pageX,pageY,offsetX,offsetY});
 
-					stepx = (x - clientX) / steps + 1;
-					stepy = (y - clientY) / steps + 1;
+			const {
+				clientX: t_x,
+				clientY: t_y
+			} = e;
+			appView.createNewBall(t_x, t_y);
+			let {
+				x,
+				y
+			} = appView.lastMovePos;
 
-					let count = 1;
-					while (count <= steps) {
-						appView.createNewBall(clientX + count * stepx, clientY + count * stepy);
-						count++;
-					}
+			const disX = Math.abs(x - t_x);
+			const disY = Math.abs(y - t_y);
+			const radius = appData.radius;
+			if (x >= 0 && y >= 0 && (disX > radius || disY > radius)) {
+				let steps, stepx, stepy;
+				if (disX > disY) {
+					steps = Math.abs(Math.floor((t_x - x) / radius));
+				} else {
+					steps = Math.abs(Math.floor((t_y - y) / radius));
 				}
 
-				appView.lastMovePos = {
-					x: clientX,
-					y: clientY
-				};
+				stepx = (x - t_x) / steps + 1;
+				stepy = (y - t_y) / steps + 1;
+
+				let count = 1;
+				while (count <= steps) {
+					appView.createNewBall(t_x + count * stepx, t_y + count * stepy);
+					count++;
+				}
 			}
+
+			appView.lastMovePos = {
+				x: t_x,
+				y: t_y
+			};
 		});
 
-		appView.$white.on('touchend touchcancel mouseup', (e) => {
+		$windowBorder.on('touchend touchcancel mouseup', (e) => {
 			appView.dragEnable = false;
 			appView.lastMovePos = {
 				x: -100,
@@ -140,29 +172,23 @@ let appView = {
 			};
 		});
 
-		// window.setInterval(() => {
-		// 	if (!appView.dragEnable) {
-
-		// 		$('div').remove('.ball');
-		// 		appView.ballList = [];
-		// 		// while (i++ < count) {
-		// 		// 	if (appView.dragEnable) break;
-		// 		// 	let $b = appView.ballList.pop();
-		// 		// 	$b.remove();
-		// 		// 	console.log('remove ', appView.ballList.length);
-		// 		// }
-		// 	}
-		// }, 4000)
 	},
 	createNewBall: function(x, y) {
 		const {
 			radius
 		} = appData;
+
+		const {
+			whiteInfo
+		} = appView;
+
+		// console.log(`===createNewBall whiteInfo:${JSON.stringify(whiteInfo)}`);
+
 		const diameter = radius * 2;
 		let id = `b${Date.now()}`;
 		const animationClass = "ani-disappear";
 		let dom =
-			`<div class="ball ${animationClass}" id="${id}" style="left:${x-radius}px;top:${y-radius}px"></div>`;
+			`<div class="ball ${animationClass}" id="${id}" style="left:${x-radius-whiteInfo.x}px;top:${y-radius-whiteInfo.y}px"></div>`;
 
 		let $ball = null;
 		let isNew = false;
@@ -170,8 +196,8 @@ let appView = {
 			$ball = appView.ballList.pop();
 			$ball.removeClass(animationClass).addClass(animationClass).css('opacity', 1);
 			$ball.css({
-				left: `${x-radius}px`,
-				top: `${y-radius}px`
+				left: `${x-radius-whiteInfo.x}px`,
+				top: `${y-radius-whiteInfo.y}px`
 			});
 			console.log('pop ',
 				appView.ballList.length);

@@ -4,6 +4,8 @@ let getRandom = function(min, max) {
 	return ret;
 }
 
+
+
 let rem = new Rem();
 rem.getWindowSize();
 
@@ -11,20 +13,23 @@ let appData = {
 	lastRenderTime: 0,
 	renderInterval: 1000 / 120,
 	imgWrapperWidth: 850,
-	piecesNum: 150,
-	level: 5,
+	piecesNum: 10,
+	level: 8,
 	piecesCenterPoint: null,
 	timeoutMouseMoveHandler: null,
 	timeoutMouseMoveStep: 1000 / 20,
-	bgUrl: '../bg.jpg',
+	bgUrl: '../assets/bg.jpg',
 	showImage: true,
+	imgs: ['./assets/bg.jpg']
 };
 
 let appView = {
 	listPieces: [],
+	$wrapper: $('.wrapper'),
 	$pieces: $('.pieces'),
 	$cbox: $('#cbox'),
 	init: function() {
+		appView.loadImg();
 		appView.initPieces();
 		appView.$cbox.change(function(evt) {
 			// console.log(evt);
@@ -49,16 +54,14 @@ let appView = {
 			$("body").off('mousemove', appView.bodyMoveHandler);
 
 			appView.listPieces.forEach($ele => {
-				// setTimeout(() => {
-				// 	$ele.css({
-				// 		transform: `translateX(${appData.imgWrapperWidth}px) scaleX(0.01) scaleY(0.01)`,
-				// 		opacity: 0
-				// 	});
-				// }, getRandom(100, 500));
-
+				// parseInt($ele.attr('lv')) * 100 + getRandom(-100, 100)
+				let rx = 360 * 1.5;
+				let ry = 360 * 1.5;
+				let rz = 360 * 1.5;
 				setTimeout(() => {
 					$ele.css({
-						transform: `translateZ(-100rem) rotateX(360deg) rotateY(180deg) rotateZ(230deg)`,
+						transform: `translateZ(-100rem)`,
+						transition: '.5s ease',
 						opacity: 0
 					});
 				}, parseInt($ele.attr('lv')) * 100 + getRandom(-100, 100));
@@ -66,8 +69,19 @@ let appView = {
 
 			setTimeout(() => {
 				appView.init();
-			}, 1000);
+			}, appData.level * 150);
 		})
+	},
+	loadImg: function() {
+		let imageLoad = new ImageLoad;
+		imageLoad.queueImage(appData.imgs).imageLoadingProgressCallback(function(a) {
+				var a = Math.floor(a); // 获取当前载入图片的百分比
+				console.log(`=== imageLoad: ${a}%`);
+			},
+			function() {
+				console.log(`=== imageLoad: loading complete`);
+				appView.$wrapper.css('visibility', 'visible');
+			});
 	},
 	initPiecesRotate: function() {
 		$("body").bind('mousemove', appView.bodyMoveHandler);
@@ -102,12 +116,8 @@ let appView = {
 
 		// 将所有图片平均分成n层,即第0，1，2...n-1层，层数标记为lv
 		// lv的功能如下
-		// lv越低，其离开图片中心就越远，也就是半径越大，反过来lv越高就越靠近中心点
-		// lv越低，图片尺寸越小
-
-		// lv的功能如下
-		// lv越低，其离开图片中心就越近，也就是离图片中心的距离越小，反过来lv越高就越靠近中心点
-		// lv越低，图片尺寸越大
+		// lv越低，距离图片中心就越近，图片尺寸越大
+		// lv越高，距离图片中心就越远，图片尺寸越小
 
 		appView.listPieces = [];
 		const {
@@ -116,8 +126,10 @@ let appView = {
 			imgWrapperWidth,
 			showImage
 		} = appData;
-		const stepPieces = Math.floor(piecesNum / level);
+		// const stepPieces = Math.floor(piecesNum / level);
+		const stepPieces = piecesNum;
 		const stepWidth = Math.round(imgWrapperWidth / 2 / level); // 设定每一层图片宽度的标准值
+
 
 		for (let i = 0; i < level; i++) {
 			// 设置半径和尺寸
@@ -132,9 +144,12 @@ let appView = {
 				minR = 0;
 			}
 
-			console.log(`maxR: ${maxR}, minR: ${minR}`);
+			let count = Math.floor(12 * maxR / w);
+			console.log(`=== lv${i}, pieces: ${count}`);
 
-			for (let j = 0; j < stepPieces; j++) {
+			// console.log(`maxR: ${maxR}, minR: ${minR}`);
+
+			for (let j = 0; j < count; j++) {
 				let $piece = $(`<div class="piece" lv="${i}"></div>`);
 				appView.setPieceStyle($piece, maxR, minR, w);
 				appView.listPieces.push($piece);
@@ -146,20 +161,20 @@ let appView = {
 		for (let $item of appView.listPieces) {
 			$pieces.append($item);
 
-			const shapeIndex = Math.floor(getRandom(1, 4));
-			switch (shapeIndex) {
-				case 1:
-					$item.addClass('heart');
-					break;
-				case 2:
-					$item.addClass('circle');
-					break;
-				case 3:
-					$item.addClass('polygon');
-					break;
-				default:
-					break;
-			}
+			// const shapeIndex = Math.floor(getRandom(1, 4));
+			// switch (shapeIndex) {
+			// 	case 1:
+			// 		$item.addClass('heart');
+			// 		break;
+			// 	case 2:
+			// 		$item.addClass('circle');
+			// 		break;
+			// 	case 3:
+			// 		$item.addClass('polygon');
+			// 		break;
+			// 	default:
+			// 		break;
+			// }
 
 			if (!showImage) {
 				$item.addClass('hide');

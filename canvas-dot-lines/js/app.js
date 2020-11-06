@@ -166,7 +166,7 @@ let mouseBall = function(x = 0, y = 0) {
 			let dis = distance(p1, p2);
 			let disPercent = Math.round(dis / distanceThreshold * 100) / 100
 			if (disPercent <= 1) {
-				line(p1, p2, (1 - disPercent) * 2, 1 - disPercent, [255, 0, 0]);
+				line(p1, p2, (1 - disPercent) * 3, 1 - disPercent, [255, 0, 0]);
 			}
 		}
 	}
@@ -256,11 +256,11 @@ let distance = function(p1, p2) {
 let appData = {
 	lastRenderTime: 0,
 	renderInterval: 1000 / 120,
-	totalDots: 100, // 总共点的数量
-	dotRadius: 2.5,
+	totalDots: 200, // 总共点的数量
+	dotRadius: 4,
 	redDotRadius: 5,
 	dotSpeedBasic: 3,
-	distanceThreshold: 300, // 两点之间连线阈值
+	distanceThreshold: 400, // 两点之间连线阈值
 }
 
 let appView = {

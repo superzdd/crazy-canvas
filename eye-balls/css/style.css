@@ -152,7 +152,7 @@ body {
 }
 
 .ani-wink {
-	animation: wink .2s ease 4 alternate;
+	animation: wink .2s linear 2 alternate;
 }
 
 @keyframes wink {

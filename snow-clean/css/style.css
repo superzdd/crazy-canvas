@@ -5,6 +5,45 @@ body {
 	user-select: none;
 }
 
+.real-bg{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	background: url(../assets/bg.jpg) center center no-repeat;
+	background-size: cover;
+	filter: blur(10px);
+	z-index: 0;
+}
+
+#window-wrapper{
+	width: 90vw;
+	height: 40vw;
+	position: absolute;
+	left: 5%;
+	top: calc((100vh - 40vw)/2);
+	overflow: hidden;
+	cursor: url(../assets/glove.png), pointer;
+}
+
+#window-border{
+	--bw: 10px;
+	width: 90vw;
+	height: 40vw;
+	position: absolute;
+	left: 5%;
+	top: calc((100vh - 40vw)/2);
+	box-sizing: border-box;
+	z-index: 5;
+	border: solid 20px transparent;
+	border-image: linear-gradient(286deg, rgb(231, 81, 90),rgb(232, 249, 65));
+	/* border-image: linear-gradient(90deg, rgba(187, 187, 187, 0.09) 0%, rgba(187, 187, 187, 0.09) 10%,rgba(58, 58, 58, 0.09) 10%, rgba(58, 58, 58, 0.09) 23%,rgba(35, 35, 35, 0.09) 23%, rgba(35, 35, 35, 0.09) 28%,rgba(84, 84, 84, 0.09) 28%, rgba(84, 84, 84, 0.09) 49%,rgba(176, 176, 176, 0.09) 49%, rgba(176, 176, 176, 0.09) 86%,rgba(203, 203, 203, 0.09) 86%, rgba(203, 203, 203, 0.09) 94%,rgba(250, 250, 250, 0.09) 94%, rgba(250, 250, 250, 0.09) 99%,rgba(139, 139, 139, 0.09) 99%, rgba(139, 139, 139, 0.09) 100%),linear-gradient(90deg, rgba(118, 118, 118, 0.02) 0%, rgba(118, 118, 118, 0.02) 7%,rgba(67, 67, 67, 0.02) 7%, rgba(67, 67, 67, 0.02) 12%,rgba(89, 89, 89, 0.02) 12%, rgba(89, 89, 89, 0.02) 13%,rgba(190, 190, 190, 0.02) 13%, rgba(190, 190, 190, 0.02) 33%,rgba(15, 15, 15, 0.02) 33%, rgba(15, 15, 15, 0.02) 40%,rgba(250, 250, 250, 0.02) 40%, rgba(250, 250, 250, 0.02) 99%,rgba(69, 69, 69, 0.02) 99%, rgba(69, 69, 69, 0.02) 100%),linear-gradient(90deg, rgba(103, 103, 103, 0.01) 0%, rgba(103, 103, 103, 0.01) 4%,rgba(50, 50, 50, 0.01) 4%, rgba(50, 50, 50, 0.01) 28%,rgba(231, 231, 231, 0.01) 28%, rgba(231, 231, 231, 0.01) 47%,rgba(8, 8, 8, 0.01) 47%, rgba(8, 8, 8, 0.01) 54%,rgba(67, 67, 67, 0.01) 54%, rgba(67, 67, 67, 0.01) 57%,rgba(156, 156, 156, 0.01) 57%, rgba(156, 156, 156, 0.01) 95%,rgba(13, 13, 13, 0.01) 95%, rgba(13, 13, 13, 0.01) 100%),linear-gradient(90deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.01) 17%,rgba(71, 71, 71, 0.01) 17%, rgba(71, 71, 71, 0.01) 30%,rgba(96, 96, 96, 0.01) 30%, rgba(96, 96, 96, 0.01) 43%,rgba(69, 69, 69, 0.01) 43%, rgba(69, 69, 69, 0.01) 50%,rgba(246, 246, 246, 0.01) 50%, rgba(246, 246, 246, 0.01) 58%,rgba(178, 178, 178, 0.01) 58%, rgba(178, 178, 178, 0.01) 79%,rgba(8, 8, 8, 0.01) 79%, rgba(8, 8, 8, 0.01) 100%),linear-gradient(90deg, rgb(153, 25, 82),rgb(232, 31, 3),rgb(227, 185, 119)); */
+	border-image-slice: 10;
+	cursor: url(../assets/glove.png), pointer;
+}
+
 .ball {
 	width: var(--ball-dia);
 	height: var(--ball-dia);
