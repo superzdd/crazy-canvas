@@ -1,12 +1,103 @@
+:root {
+	/* --screen-h: 8rem; */
+}
+
 body {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: radial-gradient(circle at center center, rgba(33, 33, 33, 0), rgb(33, 33, 33)), repeating-linear-gradient(135deg, rgb(33, 33, 33) 0px, rgb(33, 33, 33) 1px, transparent 1px, transparent 4px), repeating-linear-gradient(45deg, rgb(56, 56, 56) 0px, rgb(56, 56, 56) 5px, transparent 5px, transparent 6px), linear-gradient(90deg, rgb(33, 33, 33), rgb(33, 33, 33));
+	/* background-color: #ffffff; */
+}
+
+.corner {
+	padding: 10px;
+	--discolor: rgb(50,50,50);
+	--encolor: rgb(255,255,255);
+	position: absolute;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.corner--top-left {
+	left: 0;
+	top: 0;
+}
+
+.corner--top-right {
+	right: 0;
+	top: 0;
+}
+
+.corner--bottom-left {
+	left: 0;
+	bottom: 0;
+}
+
+.corner--bottom-right {
+	right: 0;
+	bottom: 0;
+}
+
+.corner .date-wrapper,
+.corner .clock-wrapper {
+	color: #ffffff;
+	font-size: 1.5rem;
+	line-height: 3rem;
+	height: 3rem;
+}
+
+.clock-wrapper {
+	/* 定义一根液晶管的粗细
+	   通过粗细定义所有横向和纵向液晶管的尺寸
+	            ---
+	 <======>    | 粗细
+	|---宽---|  ---
+	 
+	 */
+
+	--thickness: 2.5px;
+	/* 0.15rem */
+	--mgn: calc(var(--thickness)/3);
+	/* 水平管子的粗细 */
+	--bar-hor-w: calc(var(--thickness) * 6);
+	--bar-hor-h: var(--thickness);
+
+	/* 竖直管的粗细，注意，竖直管是的宽高是将其水平放置后的宽高, 至于让其竖过来是css的rotate做的 */
+	--bar-ver-w: calc(var(--bar-hor-w) / 3);
+	--bar-ver-h: var(--thickness);
+
+	width: calc((var(--bar-hor-w) + var(--bar-ver-h)*2)*8);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+/* 数字钟 横向液晶管 */
+.clock-wrapper .num .bar:nth-child(1),
+.clock-wrapper .num .bar:nth-child(4),
+.clock-wrapper .num .bar:nth-child(7) {
+	height: var(--bar-hor-h);
+	width: var(--bar-hor-w);
+}
+
+/* 数字钟 纵向液晶管 */
+.clock-wrapper .num .bar:nth-child(2),
+.clock-wrapper .num .bar:nth-child(3),
+.clock-wrapper .num .bar:nth-child(5),
+.clock-wrapper .num .bar:nth-child(6) {
+	height: var(--bar-ver-h);
+	width: var(--bar-ver-w);
 }
 
 .cc-wrapper {
-	width: 80%;
+	position: relative;
+	width: min(80%, 50rem);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -14,43 +105,85 @@ body {
 	border: 1px solid #000000;
 }
 
+.screen-wrapper {
+	width: 100%;
+	position: relative;
+	z-index: 20;
+}
+
+.screen-wrapper::before {
+	content: '';
+	position: absolute;
+	width: calc(118%);
+	height: 180%;
+	left: -9%;
+	top: -40%;
+	background-color: #000000;
+	/* background-image: linear-gradient(transparent, transparent 5px, #000000 5px, #000000 245px, transparent 245px, transparent); */
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	/* border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px; */
+	z-index: 0;
+	box-shadow: rgb(100, 100, 100) 5px -5px 0px, rgb(100, 100, 100) -5px -5px 0px, rgb(100, 100, 100) 5px 0px 0px, rgb(100, 100, 100) -5px 0px 0px;
+}
+
 .screen {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
+	height: calc(var(--screen-h) + 30px);
 	padding: 10px;
 	box-sizing: border-box;
-	background-color: #99cc99;
+	background-color: rgb(211, 229, 231);
+	border-radius: 10px;
+	z-index: 5;
+	box-shadow: rgb(41, 42, 47) 0px 20px 0px, rgb(41, 42, 47) 15px -10px 0px, rgb(41, 42, 47) -15px -10px 0px, rgb(41, 42, 47) 15px 20px 0px, rgb(41, 42, 47) -15px 20px 0px;
 }
 
-.screen-hide{
+.screen-hide {
 	display: none;
 }
 
-.screen-calendar{
-	--w: 40px;
-	--h: 10px;
+.screen-calculator {
+	/*
+		定义一根横着的数字管的宽高
+		宽高比为 4:1
+		两个数字的相互间隔为(w/margin) 20:3
+	 */
+	--h: calc(var(--screen-h)/18);
+	--w: calc(var(--h)*4);
+	--bar-hor-w: var(--w);
+	--bar-hor-h: var(--h);
+	--bar-ver-w: var(--w);
+	--bar-ver-h: var(--h);
 	--mgn: 3px;
-	--discolor: #999999;
+	--discolor: rgb(220,220,220);
 	--encolor: #000000;
+	font-size: var(--w);
 }
 
-.screen-calculator{
-	--w: 20px;
-	--h: 5px;
-	--mgn: 3px;
-	--discolor: #999999;
-	--encolor: #000000;
+.screen-calculator .formula {
+	display: block;
+	width: 100%;
+	height: 15px;
+	text-align: right;
+	box-sizing: border-box;
+	font-size: 12px;
+	line-height: 15px;
+	color: #000;
 }
 
-.screen-calculator .num-wrapper{
+.screen-calculator .num-wrapper {
 	flex-direction: row-reverse !important;
 }
 
 .screen-calculator .num {
 	margin: 2px;
+	position: relative;
 }
 
 .days {
@@ -79,218 +212,255 @@ body {
 
 .num {
 	position: relative;
-	width: calc(var(--w) + var(--h)*2);
-	height: calc(var(--w)*2 + var(--h)*3 + var(--mgn)*4);
-	/* margin: 10px; */
+	width: calc(var(--bar-hor-w) + var(--bar-ver-h)*2);
+	height: calc(var(--bar-hor-h)*2 + var(--bar-ver-w)*2 + var(--mgn)*3);
+}
+
+.num:after {
+	--num-dot-w: calc(10*var(--bar-hor-h));
+	content: '';
+	position: absolute;
+	bottom: calc(-1*var(--num-dot-w));
+	right: calc(-1*var(--num-dot-w));
+	width: var(--num-dot-w);
+	height: var(--num-dot-w);
+	background-color: transparent;
+	border-color: transparent;
+	border-radius: 50%;
+	transform-origin: 0% 0%;
+	transform: scale(0.1);
+}
+
+.num.num--dot:after {
+	background-color: var(--encolor) !important;
+	border-color: var(--encolor) !important;
 }
 
 .bar {
 	position: absolute;
-	width: var(--w);
-	height: var(--h);
+	width: var(--bar-hor-w);
+	height: var(--bar-hor-h);
 	background-color: var(--discolor);
 	border-color: var(--discolor);
 	opacity: 0.7;
 }
 
-.bar:before {
+.screen-calculator .bar:before {
 	content: '';
 	position: absolute;
-	border: calc(var(--h)/2) solid transparent;
+	border: calc(var(--bar-hor-h)/2) solid transparent;
 	border-right-color: inherit;
 	width: 0px;
 	height: 0px;
-	left: calc(var(--h) * -1);
+	left: calc(var(--bar-hor-h) * -1);
 	top: 0px;
 	z-index: 10;
 }
 
-.bar:after {
+.screen-calculator .bar:after {
 	content: '';
 	position: absolute;
-	border: calc(var(--h)/2) solid transparent;
+	border: calc(var(--bar-hor-h)/2) solid transparent;
 	border-left-color: inherit;
 	width: 0px;
 	height: 0px;
-	right: calc(var(--h) * -1);
+	right: calc(var(--bar-hor-h) * -1);
 	top: 0px;
 }
 
-.top {
+.bar.top {
 	top: 0px;
-	left: var(--h);
+	left: var(--bar-hor-h);
 }
 
-.up {
-	top: var(--mgn);
-	left: var(--h);
+.bar.up {
+	top: calc(var(--bar-hor-h)/2);
+	left: calc(var(--bar-ver-h) + var(--bar-hor-w)/2 - var(--bar-ver-w)/2);
 }
 
-.left {
-	transform-origin: 0% 100%;
-	transform: translateX(calc(-1*var(--h))) rotate(90deg);
+.bar.left {
+	transform-origin: 0% 50%;
+	transform: translateX(calc(-0.5* (var(--bar-hor-w) - var(--bar-ver-w) + var(--bar-ver-h) + var(--mgn)))) rotate(90deg);
 }
 
-.right {
-	transform-origin: 100% 100%;
-	transform: translateX(var(--h)) rotate(270deg);
+.bar.right {
+	transform-origin: 100% 50%;
+	transform: translateX(calc(0.5* (var(--bar-hor-w) - var(--bar-ver-w) + var(--bar-ver-h) + var(--mgn)))) rotate(270deg);
 }
 
-.middle {
-	top: calc(var(--w) + var(--h) + var(--mgn)*2);
-	left: var(--h);
+.bar.middle {
+	top: calc(var(--bar-hor-h)/2 + var(--bar-ver-w) + var(--mgn));
+	left: var(--bar-hor-h);
 }
 
-.down {
-	top: calc(var(--w) + var(--h) + var(--mgn)*3);
-	left: var(--h);
+.bar.down {
+	top: calc(var(--bar-hor-h) + var(--bar-ver-w) + var(--mgn)*2);
+	left: calc(var(--bar-ver-h) + var(--bar-hor-w)/2 - var(--bar-ver-w)/2);
 }
 
-.bottom {
-	top: calc(var(--w)*2 + var(--h)*2 + var(--mgn)*4);
-	left: var(--h);
+.bar.bottom {
+	top: calc(var(--bar-hor-h) + var(--bar-ver-w)*2 + var(--mgn)*3);
+	left: var(--bar-hor-h);
 }
 
 .dot-wrapper {
-	width: var(--h);
-	height: calc(var(--w)*2 + var(--h)*4 + var(--mgn)*4);
+	width: var(--bar-hor-h);
+	height: calc(var(--bar-hor-h)*2 + var(--bar-ver-w)*2 + var(--mgn)*3);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 }
 
 .dot {
-	width: var(--h);
-	height: var(--h);
+	width: var(--bar-hor-h);
+	height: var(--bar-hor-h);
 	background-color: var(--encolor);
-	animation: shin 0.5s linear alternate infinite;
+	animation: shin 1s linear infinite;
 }
 
 .num--zero .right,
 .num--zero .left,
 .num--zero .top,
-.num--zero .bottom {
-	background-color: var(--encolor) !important;
-	border-color: var(--encolor) !important;
-}
-
-.num--one .right {
-	background-color: var(--encolor) !important;
-	border-color: var(--encolor) !important;
-}
-
+.num--zero .bottom,
+.num--one .right,
 .num--two .top,
 .num--two .middle,
 .num--two .bottom,
 .num--two .up.right,
-.num--two .down.left {
-	background-color: var(--encolor) !important;
-	border-color: var(--encolor) !important;
-}
-
+.num--two .down.left,
 .num--three .top,
 .num--three .middle,
 .num--three .bottom,
-.num--three .right {
-	background-color: var(--encolor) !important;
-	border-color: var(--encolor) !important;
-}
-
+.num--three .right,
 .num--four .up.left,
 .num--four .middle,
-.num--four .right {
-	background-color: var(--encolor) !important;
-	border-color: var(--encolor) !important;
-}
-
+.num--four .right,
 .num--five .top,
 .num--five .middle,
 .num--five .bottom,
 .num--five .up.left,
-.num--five .down.right {
-	background-color: var(--encolor) !important;
-	border-color: var(--encolor) !important;
-}
-
+.num--five .down.right,
 .num--six .top,
 .num--six .middle,
 .num--six .bottom,
 .num--six .left,
-.num--six .down.right {
-	background-color: var(--encolor) !important;
-	border-color: var(--encolor) !important;
-}
-
+.num--six .down.right,
 .num--seven .top,
-.num--seven .right {
-	background-color: var(--encolor) !important;
-	border-color: var(--encolor) !important;
-}
-
+.num--seven .right,
 .num--eight .top,
 .num--eight .middle,
 .num--eight .bottom,
 .num--eight .left,
-.num--eight .right {
-	background-color: var(--encolor) !important;
-	border-color: var(--encolor) !important;
-}
-
+.num--eight .right,
 .num--nine .top,
 .num--nine .middle,
 .num--nine .bottom,
 .num--nine .up.left,
-.num--nine .right {
+.num--nine .right,
+.num--minus .middle,
+.num--e .top,
+.num--e .left,
+.num--e .right.up,
+.num--e .middle,
+.num--e .bottom,
+.num--r .top,
+.num--r .left,
+.num--r .right,
+.num--r .middle,
+.num--l .left,
+.num--l .bottom,
+.num--o .left,
+.num--o .right,
+.num--o .top,
+.num--o .bottom,
+.num--n .left,
+.num--n .right,
+.num--n .top,
+.num--g .top,
+.num--g .left.up,
+.num--g .right,
+.num--g .middle,
+.num--g .bottom {
 	background-color: var(--encolor) !important;
 	border-color: var(--encolor) !important;
 }
 
 .keyboard {
+	position: relative;
+	--btn-width: 18%;
+	--btn-height: min(7.2vw, 81px);
+	margin-top: 70px;
 	display: flex;
 	flex-wrap: wrap;
+	align-content: space-around;
+	justify-content: space-around;
 	width: 100%;
+	height: min(40vw, 450px);
+	font-family: verdana;
+	z-index: 10;
+}
+
+.keyboard::before {
+	content: '';
+	position: absolute;
+	width: 118%;
+	height: 130%;
+	left: -9%;
+	top: -20%;
+	background-color: rgb(64, 65, 70);
+	background-image: linear-gradient(90deg, rgb(64, 65, 70), rgb(74, 75, 80));
+	border-radius: 20px;
+	z-index: 0;
+	box-shadow: rgb(100, 100, 100) 5px -5px 0px, rgb(100, 100, 100) -5px -5px 0px, rgb(100, 100, 100) 5px 0px 0px, rgb(100, 100, 100) -5px 0px 0px;
 }
 
 .keyboard div {
-	width: 14.4vw;
-	height: 6vw;
-	line-height: 6vw;
-	margin: 0.8vw;
+	width: var(--btn-width);
+	height: var(--btn-height);
+	line-height: var(--btn-height);
+	font-size: calc(var(--btn-height)/1.8);
 	box-sizing: border-box;
-	border: 1px solid #000000;
 	border-radius: 5px;
 	text-align: center;
 	color: #ffffff;
-	background-image: radial-gradient(rgba(255,255,255,0.2), transparent 70%, transparent 100%);
-	background-color: #071A52;
+	background-image: radial-gradient(rgba(255, 255, 255, 0.2), transparent 70%, transparent 100%);
+	background-color: rgb(110, 99, 97);
 	transition: 0.2s;
+	box-shadow: 2px 2px 0px #333;
+	z-index: 5;
 }
 
-.keyboard div:hover {
-	background-image: radial-gradient(rgba(255,0,0,0.5), transparent 70%, transparent 100%);
+.keyboard div:hover,
+.keyboard div.ac:hover,
+.keyboard div.op:hover {
+	background-image: radial-gradient(rgba(255, 0, 0, 0.5), transparent 70%, transparent 100%);
 }
 
-.keyboard div:active {
-	background-image: radial-gradient(rgba(255,255,255,0), transparent 70%, transparent 100%);
+.keyboard div:active,
+.keyboard div.ac:active,
+.keyboard div.op:active {
+	background-image: radial-gradient(rgba(255, 255, 255, 0), transparent 70%, transparent 100%);
 	transform: scale(0.95);
 }
 
 .keyboard div.ac {
-	color: #000000;
-	background-image: radial-gradient(rgba(255,255,255,0.2), transparent 70%, transparent 100%);
-	background-color: rgb(255,162,84);
+	/* color: #000000; */
+	background-image: radial-gradient(rgba(240, 240, 240, 0.5), transparent 70%, transparent 100%);
+	background-color: rgb(204, 81, 14);
 }
 
-.keyboard div.ac:hover {
-	background-image: radial-gradient(rgba(255,0,0,0.5), transparent 70%, transparent 100%);
+.keyboard div.op {
+	/* color: #000000; */
+	background-image: radial-gradient(rgba(255, 255, 255, 0.2), transparent 70%, transparent 100%);
+	background-color: rgb(32, 35, 40);
 }
 
 @keyframes shin {
-	from {
+	0%,100% {
 		opacity: 1;
 	}
 
-	to {
+	50% {
 		opacity: 0;
 	}
 }

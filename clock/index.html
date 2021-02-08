@@ -3,278 +3,291 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
-		<title>电子时钟</title>
+		<title>电子时钟&计算器</title>
 		<link rel="stylesheet" type="text/css" href="css/common.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript">
+			document.documentElement.style.fontSize = 12 + "px";
+		</script>
 	</head>
 	<body>
-		<div class="cc-wrapper">
-			<div class="screen-wrapper">
-				<div class="screen screen-hide screen-calendar">
-					<div class="days">
-						<div>
-							Mon
-						</div>
-						<div>
-							Tue
-						</div>
-						<div>
-							Wed
-						</div>
-						<div>
-							Thu
-						</div>
-						<div>
-							Fri
-						</div>
-						<div>
-							Sat
-						</div>
-						<div>
-							Sun
-						</div>
-					</div>
-					<div class="num-wrapper">
-						<div id="h1" class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div id="h2" class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="dot-wrapper">
-							<div class="dot"></div>
-							<div class="dot"></div>
-						</div>
-						<div id="m1" class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div id="m2" class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="dot-wrapper">
-							<div class="dot"></div>
-							<div class="dot"></div>
-						</div>
-						<div id="s1" class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div id="s2" class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-					</div>
+		<div class="corner corner--top-left">
+			<div class="date-wrapper">SUN</div>
+			<div class="clock-wrapper">
+				<div class="h1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
 				</div>
-				
+				<div class="h2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="dot-wrapper">
+					<div class="dot"></div>
+					<div class="dot"></div>
+				</div>
+				<div class="m1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="m2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="dot-wrapper">
+					<div class="dot"></div>
+					<div class="dot"></div>
+				</div>
+				<div class="s1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="s2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+			</div>
+		</div>
+		<div class="corner corner--top-right">
+			<div class="date-wrapper">SUN</div>
+			<div class="clock-wrapper">
+				<div class="h1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="h2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="dot-wrapper">
+					<div class="dot"></div>
+					<div class="dot"></div>
+				</div>
+				<div class="m1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="m2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="dot-wrapper">
+					<div class="dot"></div>
+					<div class="dot"></div>
+				</div>
+				<div class="s1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="s2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+			</div>
+		</div>
+		<div class="corner corner--bottom-left">
+			<div class="date-wrapper">SUN</div>
+			<div class="clock-wrapper">
+				<div class="h1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="h2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="dot-wrapper">
+					<div class="dot"></div>
+					<div class="dot"></div>
+				</div>
+				<div class="m1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="m2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="dot-wrapper">
+					<div class="dot"></div>
+					<div class="dot"></div>
+				</div>
+				<div class="s1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="s2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+			</div>
+		</div>
+		<div class="corner corner--bottom-right">
+			<div class="date-wrapper">SUN</div>
+			<div class="clock-wrapper">
+				<div class="h1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="h2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="dot-wrapper">
+					<div class="dot"></div>
+					<div class="dot"></div>
+				</div>
+				<div class="m1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="m2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="dot-wrapper">
+					<div class="dot"></div>
+					<div class="dot"></div>
+				</div>
+				<div class="s1 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+				<div class="s2 num">
+					<div class="bar top"></div>
+					<div class="bar up left"></div>
+					<div class="bar up right"></div>
+					<div class="bar middle"></div>
+					<div class="bar down left"></div>
+					<div class="bar down right"></div>
+					<div class="bar bottom"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="cc-wrapper">
+			<div class="bg-wrapper">
+			</div>
+			<div class="screen-wrapper">
 				<div class="screen screen-calculator">
-					<div class="days">
+					<div class="formula">
 					</div>
 					<div class="num-wrapper">
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
-						<div class="num">
-							<div class="bar top"></div>
-							<div class="bar up left"></div>
-							<div class="bar up right"></div>
-							<div class="bar middle"></div>
-							<div class="bar down left"></div>
-							<div class="bar down right"></div>
-							<div class="bar bottom"></div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -298,11 +311,14 @@
 				<div class="cdot">.</div>
 				<div class="num">00</div>
 				<div class="op">Ans</div>
-				<div class="op">=</div>
+				<div class="op ac">=</div>
 			</div>
 		</div>
 		<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
 		<script src="js/rem.js"></script>
+		<script src="js/lcd-digit.js"></script>
+		<script src="js/acc-num.js"></script>
+		<script src="js/calculator.js"></script>
 		<script src="js/app.js"></script>
 	</body>
 </html>
