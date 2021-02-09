@@ -25,3 +25,4 @@ web 前端特效，主要是对 kong66 的躁动 web 的一些项目，自己重
 21. [canvas绘画基础-2](https://superzdd.github.io/crazy-canvas/canvas-dot-lines/index.html)
 22. [加载动画](https://superzdd.github.io/crazy-canvas/canvas-loading-2/index.html)
 23. [svg渐变](https://superzdd.github.io/crazy-canvas/svg-linear/index.html)
+24. [电子钟](https://superzdd.github.io/crazy-canvas/clock/index.html)
