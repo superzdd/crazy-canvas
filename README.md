@@ -5,7 +5,7 @@ web 前端特效，主要是对 kong66 的躁动 web 的一些项目，自己重
 1. [弹弹球](https://superzdd.github.io/crazy-canvas/bounce-ball/index.html)
 2. [旋转的骰子](https://superzdd.github.io/crazy-canvas/dice/index.html)
 3. [SVG 镂空文本](https://superzdd.github.io/crazy-canvas/hollow-text/index.html)
-4. [SVG 文字路径动画](https://superzdd.github.io/crazy-canvas/path-animation/index.html)
+4. [SVG 文字路径动画](https://superzdd.github.io/crazy-canvas/path-animation/index-zdd-logo)
 5. [SVG 文字路径动画-svg-text](https://superzdd.github.io/crazy-canvas/path-animation/index-svg-text.html)
 6. [svg 滤镜-1](https://superzdd.github.io/crazy-canvas/svg-filter-1/index.html)
 7. [长阴影](https://superzdd.github.io/crazy-canvas/long-shadow/index.html)
